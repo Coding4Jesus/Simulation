@@ -8,16 +8,15 @@ public class Simulation {
 	public static void main(String[] args) {
 		Wolves wolves = new Wolves();			//testing
 		
-		Wolves wolves2 = new Wolves();
 		System.out.println(wolves.returnW1());	//test
 		wolves.ChangeW1(5);
-		System.out.print(wolves2.returnW1());
+		System.out.print(wolves.returnW1());
 
 	}
 	
 	public static class Wolves {
-		private static int NumberW1, MetabolW2, StartFW3, MaxFW4, MaxAgeW5, ChancetoXW6;		//the 6 variables I think we'll need
-		public Wolves() {																//numbered to keep them in mind more easily
+		private int NumberW1, MetabolW2, StartFW3, MaxFW4, MaxAgeW5, ChancetoXW6;		//the 6 variables I think we'll need
+		public Wolves() {																		//numbered to keep them in mind more easily
 			NumberW1 = 10;	//initial values
 			MetabolW2 = 10;	//just placeholder
 			StartFW3 = 50;
