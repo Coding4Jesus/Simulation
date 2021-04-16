@@ -7,58 +7,60 @@ public class Simulation {
  */
 	public static void main(String[] args) {
 		Wolves wolves = new Wolves();			//testing
-		Wolves wolves2 = new Wolves();
-		System.out.print(wolves.NumberW1);
 		
+		Wolves wolves2 = new Wolves();
+		System.out.println(wolves.returnW1());	//test
+		wolves.ChangeW1(5);
+		System.out.print(wolves2.returnW1());
 
 	}
 	
 	public static class Wolves {
-		private static int NumberW1, Metabol2, StartF3, MaxF4, MaxAge5, ChancetoX6;		//the 6 variables I think we'll need
+		private static int NumberW1, MetabolW2, StartFW3, MaxFW4, MaxAgeW5, ChancetoXW6;		//the 6 variables I think we'll need
 		public Wolves() {																//numbered to keep them in mind more easily
 			NumberW1 = 10;	//initial values
-			Metabol2 = 10;	//just placeholder
-			StartF3 = 50;
-			MaxF4 = 150;
-			MaxAge5 = 50;
-			ChancetoX6 = 75;
+			MetabolW2 = 10;	//just placeholder
+			StartFW3 = 50;
+			MaxFW4 = 150;
+			MaxAgeW5 = 50;
+			ChancetoXW6 = 75;
 		}
-		public void Change1(int placehold) { 
+		public void ChangeW1(int placehold) { 
 			NumberW1 = placehold;				//they all change the initial values
 		}
-		public void Change2(int placehold) {
-			Metabol2 = placehold;
+		public void ChangeW2(int placehold) {
+			MetabolW2 = placehold;
 		}
-		public void Change3(int placehold) {
-			StartF3 = placehold;
+		public void ChangeW3(int placehold) {
+			StartFW3 = placehold;
 		}
-		public void Change4(int placehold) {
-			MaxF4 = placehold;
+		public void ChangeW4(int placehold) {
+			MaxFW4 = placehold;
 		}
-		public void Change5(int placehold) {
-			MaxAge5 = placehold;
+		public void ChangeW5(int placehold) {
+			MaxAgeW5 = placehold;
 		}
-		public void Change6(int placehold) {
-			ChancetoX6 = placehold;
+		public void ChangeW6(int placehold) {
+			ChancetoXW6 = placehold;
 		}
-		public int return1() {					//return said values
+		public int returnW1() {					//return said values
 			return(NumberW1);
 		}
-		public int return2() {
-			return(Metabol2);
+		public int returnW2() {
+			return(MetabolW2);
 		}
-		public int return3() {
-			return(StartF3);
+		public int returnW3() {
+			return(StartFW3);
 		}
-		public int return4() {
-			return(MaxF4);
+		public int returnW4() {
+			return(MaxFW4);
 		}
-		public int return5() {
-			return(MaxAge5);
+		public int returnW5() {
+			return(MaxAgeW5);
 		}
-		public double return6() {				//ChancetoX6 is returned as a double since it 
+		public double returnW6() {				//ChancetoX6 is returned as a double since it 
 			double a;							//is easier to work with a fraction for its intended
-			a=ChancetoX6/100;					//purposes
+			a=ChancetoXW6/100;					//purposes
 			return(a);
 		}
 	}
