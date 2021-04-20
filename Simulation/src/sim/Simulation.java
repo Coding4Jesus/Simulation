@@ -26,7 +26,7 @@ public class Simulation {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 800);
 		frame.setLocationRelativeTo(null);
-		
+		Wolves wolves = new Wolves();
 		
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -179,78 +179,78 @@ public class Simulation {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+				if(w1.getText() != "") {
+				wolves.changeW1(Integer.parseInt(w1.getText()));	//converts all input parameters and inserts them into the wolves class
+				}													//also checks for no empty text boxes
+				if(w2.getText() != "") {
+				wolves.changeW2(Integer.parseInt(w2.getText()));
+				}
+				if(w3.getText() != "") {
+				wolves.changeW3(Integer.parseInt(w3.getText()));
+				}
+				if(w4.getText() != "") {
+				wolves.changeW4(Integer.parseInt(w4.getText()));
+				}
+				if(w5.getText() != "") {
+				wolves.changeW5(Integer.parseInt(w5.getText()));
+				}
+				if(w6.getText() != "") {
+				wolves.changeW6(Integer.parseInt(w6.getText()));
+				}
 				
 			}
-			
 		});
 		c.gridx = 3;
 		c.gridy = 1;
 		panel.add(start, c);
+		
 		
 		frame.setContentPane(panel);
 		
 		frame.setVisible(true);
 		
 	}
-	
 
 
 	public static void main(String[] args) {
-		Wolves wolves = new Wolves();			//testing
-		Wolves wolves2 = new Wolves();
-		System.out.print(wolves.NumberW1);
-		
 		Simulation run = new Simulation();
 
 	}
 	
 	public static class Wolves {
-		private static int NumberW1, Metabol2, StartF3, MaxF4, MaxAge5, ChancetoX6;		//the 6 variables I think we'll need
-		public Wolves() {																//numbered to keep them in mind more easily
-			NumberW1 = 10;	//initial values
-			Metabol2 = 10;	//just placeholder
-			StartF3 = 50;
-			MaxF4 = 150;
-			MaxAge5 = 50;
-			ChancetoX6 = 75;
+		private int numberW1, metabolW2, startFW3, maxFW4, maxAgeW5, chancetoXW6;		//the 6 variables I think we'll need
+		public Wolves() {																		//numbered to keep them in mind more easily
+			numberW1 = 10;	//initial values
+			metabolW2 = 10;	//just placeholder
+			startFW3 = 50;
+			maxFW4 = 150;
+			maxAgeW5 = 50;
+			chancetoXW6 = 75;
 		}
-		public void Change1(int placehold) { 
-			NumberW1 = placehold;				//they all change the initial values
+		public int changeW1(int placehold) { 
+			numberW1 = placehold;				//they all change the initial values
+			return(numberW1);					//and return them
 		}
-		public void Change2(int placehold) {
-			Metabol2 = placehold;
+		public int changeW2(int placehold) {
+			metabolW2 = placehold;
+			return(metabolW2);
 		}
-		public void Change3(int placehold) {
-			StartF3 = placehold;
+		public int changeW3(int placehold) {
+			startFW3 = placehold;
+			return(startFW3);
 		}
-		public void Change4(int placehold) {
-			MaxF4 = placehold;
+		public int changeW4(int placehold) {
+			maxFW4 = placehold;
+			return(maxFW4);
 		}
-		public void Change5(int placehold) {
-			MaxAge5 = placehold;
+		public int changeW5(int placehold) {
+			maxAgeW5 = placehold;
+			return(maxAgeW5);
 		}
-		public void Change6(int placehold) {
-			ChancetoX6 = placehold;
-		}
-		public int return1() {					//return said values
-			return(NumberW1);
-		}
-		public int return2() {
-			return(Metabol2);
-		}
-		public int return3() {
-			return(StartF3);
-		}
-		public int return4() {
-			return(MaxF4);
-		}
-		public int return5() {
-			return(MaxAge5);
-		}
-		public double return6() {				//ChancetoX6 is returned as a double since it 
-			double a;							//is easier to work with a fraction for its intended
-			a=ChancetoX6/100;					//purposes
+		public int changeW6(int placehold) {
+			int a;
+			chancetoXW6 = placehold;
+			a = chancetoXW6/100;
 			return(a);
 		}
 	}
