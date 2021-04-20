@@ -31,7 +31,7 @@ public class Simulation {
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		wl = new JLabel("WOLF PARAMETERS");
+		wl = new JLabel("WOLF PARAMETERS");   //builds the labels and text boxes for changing the parameters
 		c.gridx = 1;
 		c.gridy = 0;
 		panel.add(wl, c);
@@ -167,13 +167,59 @@ public class Simulation {
 		panel.add(l12, c);
 		
 		start = new JButton("Next Day");
+		
 		grid = new JButton[100];
 		String b[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
 				    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
 				    "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60",
 				    "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80",
 				    "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"};
-	
+		
+		for(int i = 0; i<grid.length; i++) {  //builds the grid for the simulation 
+			grid[i] = new JButton(" ");
+			c.gridx = i+4;
+			c.gridy = 2;
+			if (i > 9) {
+				c.gridx = i-6;
+				c.gridy = 3;
+			}
+			if (i > 19) {
+				c.gridx = i - 16;
+				c.gridy = 4;
+			}
+			if (i > 29) {
+				c.gridx = i - 26;
+				c.gridy = 5;
+			}
+			if (i > 39) {
+				c.gridx = i - 36;
+				c.gridy = 6;
+			}
+			if (i > 49) {
+				c.gridx = i - 46;
+				c.gridy = 7;
+			}
+			if (i > 59) {
+				c.gridx = i - 56;
+				c.gridy = 8;
+			}
+			if (i > 69) {
+				c.gridx = i - 66;
+				c.gridy = 9;
+			}
+			if (i > 79) {
+				c.gridx = i - 76;
+				c.gridy = 10;
+			}
+			if (i > 89) {
+				c.gridx = i - 86;
+				c.gridy = 11;
+	}
+			panel.add(grid[i], c);
+			System.out.println(i);
+		}
+			
+			
 		
 		start.addActionListener(new ActionListener() {
 
@@ -201,7 +247,7 @@ public class Simulation {
 			}
 		});
 		c.gridx = 3;
-		c.gridy = 1;
+		c.gridy = 0;
 		panel.add(start, c);
 		
 		
