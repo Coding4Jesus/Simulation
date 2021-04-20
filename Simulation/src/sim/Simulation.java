@@ -31,7 +31,7 @@ public class Simulation {
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
-		wl = new JLabel("WOLF PARAMETERS");
+		wl = new JLabel("NO FRACTIONS\nLEAVE EMPTY FOR DEFAULT VALUE\nWOLF PARAMETERS");
 		c.gridx = 1;
 		c.gridy = 0;
 		panel.add(wl, c);
@@ -51,7 +51,7 @@ public class Simulation {
 		c.gridy = 2;
 		panel.add(w2, c);
 		
-		l2 = new JLabel("Metabolism rate");
+		l2 = new JLabel("Metabolism rate ");
 		c.gridx = 1;
 		c.gridy = 2;
 		panel.add(l2, c);
@@ -71,7 +71,7 @@ public class Simulation {
 		c.gridy = 4;
 		panel.add(w4, c);
 		
-		l4 = new JLabel("Max food allowed");
+		l4 = new JLabel("Max food allowed ");
 		c.gridx = 1;
 		c.gridy = 4;
 		panel.add(l4, c);
@@ -81,7 +81,7 @@ public class Simulation {
 		c.gridy = 5;
 		panel.add(w5, c);
 		
-		l5 = new JLabel("Max age");
+		l5 = new JLabel("Max age ");
 		c.gridx = 1;
 		c.gridy = 5;
 		panel.add(l5, c);
@@ -121,7 +121,7 @@ public class Simulation {
 		c.gridy = 10;
 		panel.add(r2, c);
 		
-		l8 = new JLabel("Metabolism rate");
+		l8 = new JLabel("Metabolism rate ");
 		c.gridx = 1;
 		c.gridy = 10;
 		panel.add(l8, c);
@@ -141,7 +141,7 @@ public class Simulation {
 		c.gridy = 12;
 		panel.add(r4, c);
 		
-		l10 = new JLabel("Max food allowed");
+		l10 = new JLabel("Max food allowed ");
 		c.gridx = 1;
 		c.gridy = 12;
 		panel.add(l10, c);
@@ -151,7 +151,7 @@ public class Simulation {
 		c.gridy = 13;
 		panel.add(r5, c);
 		
-		l11 = new JLabel("Max age");
+		l11 = new JLabel("Max age ");
 		c.gridx = 1;
 		c.gridy = 13;
 		panel.add(l11, c);
@@ -174,28 +174,27 @@ public class Simulation {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(w1.getText() != "") {
-				wolves.changeW1(Integer.parseInt(w1.getText()));	//converts all input parameters and inserts them into the wolves class
+				if(w1.getText() != "" && w1.getText() != " ") {		
+				wolves.changeW1(Integer.parseInt(w1.getText()));	//parses all input to ints and inserts them into the wolves class
 				}													//also checks for no empty text boxes
-				if(w2.getText() != "") {
+				if(w2.getText() != "" && w2.getText() != " ") {
 				wolves.changeW2(Integer.parseInt(w2.getText()));
 				}
-				if(w3.getText() != "") {
+				if(w3.getText() != "" && w3.getText() != " "){
 				wolves.changeW3(Integer.parseInt(w3.getText()));
 				}
-				if(w4.getText() != "") {
+				if(w4.getText() != "" && w4.getText() != " ") {
 				wolves.changeW4(Integer.parseInt(w4.getText()));
 				}
-				if(w5.getText() != "") {
+				if(w5.getText() != "" && w5.getText() != " ") {
 				wolves.changeW5(Integer.parseInt(w5.getText()));
 				}
-				if(w6.getText() != "") {
+				if(w6.getText() != "" && w6.getText() != " ") {
 				wolves.changeW6(Integer.parseInt(w6.getText()));
 				}
 				
 			}
 		});
-		
 		
 		frame.setContentPane(panel);
 		
@@ -206,7 +205,7 @@ public class Simulation {
 
 	public static void main(String[] args) {
 		Simulation run = new Simulation();
-
+		
 	}
 	
 	public static class Wolves {
@@ -242,6 +241,26 @@ public class Simulation {
 		public int changeW6(int placehold) {
 			int a;
 			chancetoXW6 = placehold;
+			a = chancetoXW6/100;
+			return(a);
+		}
+		public int returnW1() { 				
+			return(numberW1);					//just return them
+		}
+		public int returnW2() {
+			return(metabolW2);
+		}
+		public int returnW3() {			
+			return(startFW3);
+		}
+		public int returnW4() {			
+			return(maxFW4);
+		}
+		public int returnW5() {
+			return(maxAgeW5);
+		}
+		public int returnW6() {
+			int a;
 			a = chancetoXW6/100;
 			return(a);
 		}
