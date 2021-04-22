@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -14,7 +15,7 @@ public class Simulation {
  * Jack on rabbits
  * Devin on the environment
  */
-
+	Random r = new Random();
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
@@ -219,7 +220,6 @@ public class Simulation {
 				c.gridy = 11;
 	}
 			panel.add(grid[i], c);
-			System.out.println(i);
 		}
 			
 			
@@ -247,6 +247,8 @@ public class Simulation {
 				wolves.changeW6(Integer.parseInt(w6.getText()));
 				}
 				
+				
+				
 			}
 		});
 		c.gridx = 3;
@@ -254,7 +256,15 @@ public class Simulation {
 		panel.add(start, c);
 		
 		nextDay = new JButton("Next Day");
-		
+		nextDay.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+			
+		});
 		
 		
 		c.gridx = 3;
