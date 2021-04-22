@@ -18,7 +18,7 @@ public class Simulation {
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
-	private JButton start;
+	private JButton start, nextDay;
 	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, space;
 	private String Grass, Rabbit, Wolf;
 	private JTextField w1, w2, w3, w4, w5, w6, r1, r2, r3, r4, r5, r6;
@@ -173,14 +173,10 @@ public class Simulation {
 		c.gridy = 14;
 		panel.add(l12, c);
 		
-		start = new JButton("Next Day");
+		start = new JButton("Set Parameters");
 		
 		grid = new JButton[100];
-		String b[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-				    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
-				    "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60",
-				    "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80",
-				    "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"};
+		
 		
 		for(int i = 0; i<grid.length; i++) {  //builds the grid for the simulation 
 			grid[i] = new JButton(" ");
@@ -256,6 +252,14 @@ public class Simulation {
 		c.gridx = 3;
 		c.gridy = 0;
 		panel.add(start, c);
+		
+		nextDay = new JButton("Next Day");
+		
+		
+		
+		c.gridx = 3;
+		c.gridy = 1;
+		panel.add(nextDay, c);
 		
 		
 		frame.setContentPane(panel);
