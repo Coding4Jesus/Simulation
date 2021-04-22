@@ -1,6 +1,5 @@
 package sim;
 
-
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -9,10 +8,17 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Simulation {
+
+/* 
+ * Jesus on wolves
+ * Jack on rabbits
+ * Devin on the environment
+ */
+
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
-	private JButton start;
+	private JButton start, nextDay;
 	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, space;
 	private String Grass, Rabbit, Wolf;
 	private JTextField w1, w2, w3, w4, w5, w6, r1, r2, r3, r4, r5, r6;
@@ -21,7 +27,8 @@ public class Simulation {
 		Grass = "G";
 		Rabbit = "R";
 		Wolf = "W";
-		
+
+
 		frame = new JFrame("Rabbit & Wolf Sim");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800, 800);
@@ -166,14 +173,14 @@ public class Simulation {
 		c.gridy = 14;
 		panel.add(l12, c);
 		
-		start = new JButton("Next Day");
+		start = new JButton("Set Parameters");
 		
 		grid = new JButton[100];
 		
 		String[] b;
 		b = new String[100];
 		
-		for (int a = 0; a < 100 ; a++) {
+		for (int a = 0; a < 100 ; a++) {	//hopefully 100 strings, 0 as "1", 1 as "2" etc. 
 			String ba;
 			ba = Integer.toString(a+1);
 			b[a] = ba;
@@ -235,22 +242,22 @@ public class Simulation {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if(w1.getText() != "" && w1.getText() != " ") {		
-				wolves.changeW1(Integer.parseInt(w1.getText()));	//parses all input to ints and inserts them into the wolves class
+				wolves.WolAlter1(Integer.parseInt(w1.getText()));	//parses all input to ints and inserts them into the wolves class
 				}													//also checks for no empty text boxes
 				if(w2.getText() != "" && w2.getText() != " ") {
-				wolves.changeW2(Integer.parseInt(w2.getText()));
+				wolves.WolAlter2(Integer.parseInt(w2.getText()));
 				}
 				if(w3.getText() != "" && w3.getText() != " "){
-				wolves.changeW3(Integer.parseInt(w3.getText()));
+				wolves.WolAlter3(Integer.parseInt(w3.getText()));
 				}
 				if(w4.getText() != "" && w4.getText() != " ") {
-				wolves.changeW4(Integer.parseInt(w4.getText()));
+				wolves.WolAlter4(Integer.parseInt(w4.getText()));
 				}
 				if(w5.getText() != "" && w5.getText() != " ") {
-				wolves.changeW5(Integer.parseInt(w5.getText()));
+				wolves.WolAlter5(Integer.parseInt(w5.getText()));
 				}
 				if(w6.getText() != "" && w6.getText() != " ") {
-				wolves.changeW6(Integer.parseInt(w6.getText()));
+				wolves.WolAlter6(Integer.parseInt(w6.getText()));
 				}
 				
 			}
@@ -258,6 +265,12 @@ public class Simulation {
 		c.gridx = 3;
 		c.gridy = 0;
 		panel.add(start, c);
+		
+		nextDay = new JButton("Next Day");
+		
+		c.gridx = 3;
+		c.gridy = 1;
+		panel.add(nextDay, c);
 		
 		frame.setContentPane(panel);
 		
@@ -267,65 +280,130 @@ public class Simulation {
 
 
 	public static void main(String[] args) {
+
 		Simulation run = new Simulation();
 		
 	}
 	
 	public static class Wolves {
-		private int numberW1, metabolW2, startFW3, maxFW4, maxAgeW5, chancetoXW6;		//the 6 variables I think we'll need
+		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
 		public Wolves() {																		//numbered to keep them in mind more easily
-			numberW1 = 10;	//initial values
-			metabolW2 = 10;	//just placeholder
-			startFW3 = 50;
-			maxFW4 = 150;
-			maxAgeW5 = 50;
-			chancetoXW6 = 75;
+			WolNum1 = 10;	//initial values
+			WolMeta2 = 10;	//just placeholder
+			WolFS3 = 50;
+			WolFM4 = 150;
+			WolOld5 = 50;
+			WolChance6 = 75;
 		}
-		public int changeW1(int placehold) { 
-			numberW1 = placehold;				//they all change the initial values
-			return(numberW1);					//and return them
+		public int WolAlter1(int placehold) { 
+			WolNum1 = placehold;				//they all change the initial values
+			return(WolNum1);					//and return them
 		}
-		public int changeW2(int placehold) {
-			metabolW2 = placehold;
-			return(metabolW2);
+		public int WolAlter2(int placehold) {
+			WolMeta2 = placehold;
+			return(WolMeta2);
 		}
-		public int changeW3(int placehold) {
-			startFW3 = placehold;
-			return(startFW3);
+		public int WolAlter3(int placehold) {
+			WolFS3 = placehold;
+			return(WolFS3);
 		}
-		public int changeW4(int placehold) {
-			maxFW4 = placehold;
-			return(maxFW4);
+		public int WolAlter4(int placehold) {
+			WolFM4 = placehold;
+			return(WolFM4);
 		}
-		public int changeW5(int placehold) {
-			maxAgeW5 = placehold;
-			return(maxAgeW5);
+		public int WolAlter5(int placehold) {
+			WolOld5 = placehold;
+			return(WolOld5);
 		}
-		public int changeW6(int placehold) {
+		public int WolAlter6(int placehold) {
 			int a;
-			chancetoXW6 = placehold;
-			a = chancetoXW6/100;
+			WolChance6 = placehold;
+			a = WolChance6/100;
 			return(a);
 		}
-		public int returnW1() { 				
-			return(numberW1);					//just return them
+		public int WolSend1() { 				
+			return(WolNum1);					//just return them
 		}
-		public int returnW2() {
-			return(metabolW2);
+		public int WolSend2() {
+			return(WolMeta2);
 		}
-		public int returnW3() {			
-			return(startFW3);
+		public int WolSend3() {			
+			return(WolFS3);
 		}
-		public int returnW4() {			
-			return(maxFW4);
+		public int WolSend4() {			
+			return(WolFM4);
 		}
-		public int returnW5() {
-			return(maxAgeW5);
+		public int WolSend5() {
+			return(WolOld5);
 		}
-		public int returnW6() {
+		public int WolSend6() {
 			int a;
-			a = chancetoXW6/100;
+			a = WolChance6/100;
 			return(a);
 		}
 	}
+	
+	public static class Rabbits {
+		
+		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6; //based on Jesus's code I should only need 6 variables, if not i can add some later
+		public Rabbits () {
+			
+			RabNum1 = 10; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
+			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
+			RabFS3 = 15; //initial amount of food
+			RabFM4 = 40; //maximum amount of food
+			RabOld5 = 25; //maximum age
+			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
+			
+		}
+		
+		public int RabAlter1(int placehold) {
+			RabNum1 = placehold;              //for changing the values
+			return(RabNum1);
+		}
+		public int RabAlter2(int placehold) {
+			RabMeta2 = placehold;
+			return(RabMeta2);
+		}
+		public int RabAlter3(int placehold) {
+			RabFS3 = placehold;
+			return(RabFS3);
+		}
+		public int RabAlter4(int placehold) {
+			RabFM4 = placehold;
+			return(RabFM4);
+		}
+		public int RabAlter5(int placehold) {
+			RabOld5 = placehold;
+			return(RabOld5);
+		}
+		public int RabAlter6(int placehold) {
+			int a;
+			RabChance6 = placehold;
+			a = RabChance6/100;
+			return(a);
+		}
+		public int RabSend1() {
+			return(RabNum1);
+		}
+		public int RabSend2() {
+			return(RabMeta2);
+		}
+		public int RabSend3() {
+			return(RabFS3);
+		}
+		public int RabSend4() {
+			return(RabFM4);
+		}
+		public int RabSend5() {
+			return(RabOld5);
+		}
+		public double RabSend6() {
+			double b;
+			b = RabChance6/100;
+			return(b);
+		}
+		
+	}
+	
 }
