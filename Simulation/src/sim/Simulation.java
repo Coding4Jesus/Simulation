@@ -345,7 +345,7 @@ public class Simulation {
 			ChanceToM6 = placehold;
 		}
 		public int Send1() {
-			return(RabNum1);
+			return(RabNum1);        //returning the changed values... or just the values in general
 		}
 		public int Send2() {
 			return(RabMeta2);
@@ -363,6 +363,30 @@ public class Simulation {
 			double b;
 			b = ChanceToM6/100;
 			return(b);
+		}
+		
+		public void RabEat() {
+			
+			//placeholder, come back to this later when the grass code is ready
+			
+		}
+		
+		public void RabMove() {
+			
+			//placeholder, come back to this later when the grass code is ready
+			
+		}
+		
+		public void RabAge() {
+			
+			//I'm dumb, I shall return to this later
+			
+		}
+		
+		public void RabRepro() {
+			
+			//placeholder, come back to this later when the grass code is ready
+			
 		}
 		
 	}
