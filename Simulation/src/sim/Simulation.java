@@ -317,12 +317,12 @@ public class Simulation {
 		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, ChanceToM6; //based on Jesus's code I should only need 6 variables, if not i can add some later
 		public Rabbits () {
 			
-			RabNum1 = 10; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
-			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
+			RabNum1 = 10; //placeholder value, mostly for testing stuff
+			RabMeta2 = 10; //also a placeholder value
 			RabFS3 = 15; //initial amount of food
 			RabFM4 = 40; //maximum amount of food
 			RabOld5 = 25; //maximum age
-			ChanceToM6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
+			ChanceToM6 = 50; //chance to reproduce if in proper environment (check the website reference to see proper environment)
 			
 		}
 		
