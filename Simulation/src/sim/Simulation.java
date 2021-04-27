@@ -14,7 +14,6 @@ public class Simulation {
  * Jack on rabbits
  * Devin on the environment
  */
-
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
@@ -345,7 +344,7 @@ public class Simulation {
 	
 	public static class Rabbits {
 		
-		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6; //based on Jesus's code I should only need 6 variables, if not i can add some later
+		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
 		public Rabbits () {
 			
 			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
@@ -354,6 +353,7 @@ public class Simulation {
 			RabFM4 = 40; //maximum amount of food
 			RabOld5 = 25; //maximum age
 			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
+			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
 			
 		}
 		
@@ -412,7 +412,24 @@ public class Simulation {
 			
 			// evertime new day is pressed the age goes up by 1
 			
-			int age[];
+			int age[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+			
+			for(int i=0; i<age.length; i++) {
+				
+				if(age[i] != 0) {
+					
+					age[i]++;
+					
+					if(age[i]>RabOld5) {
+						
+						age[i] = 0;
+						RabDeath7++;
+						
+					}
+					
+				}
+				
+			}
 			
 		}
 		
