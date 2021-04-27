@@ -34,6 +34,7 @@ public class Simulation {
 		frame.setSize(800, 800);
 		frame.setLocationRelativeTo(null);
 		Wolves wolves = new Wolves();
+		Rabbits rabbits = new Rabbits();
 		
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -230,7 +231,7 @@ public class Simulation {
 			if (i > 89) {
 				c.gridx = i - 86;
 				c.gridy = 11;
-	}
+			}
 			panel.add(grid[i], c);
 			System.out.println(i);
 		}
@@ -260,6 +261,30 @@ public class Simulation {
 				wolves.WolAlter6(Integer.parseInt(w6.getText()));
 				}
 				
+				if(r1.getText() != "" && r1.getText() != " ") {		
+				rabbits.RabAlter1(Integer.parseInt(r1.getText()));	//same but for rabbits
+				}													
+				if(r2.getText() != "" && r2.getText() != " ") {
+				rabbits.RabAlter2(Integer.parseInt(r2.getText()));
+				}
+				if(r3.getText() != "" && r3.getText() != " "){
+				rabbits.RabAlter3(Integer.parseInt(r3.getText()));
+				}
+				if(r4.getText() != "" && r4.getText() != " ") {
+				rabbits.RabAlter4(Integer.parseInt(r4.getText()));
+				}
+				if(r5.getText() != "" && r5.getText() != " ") {
+				rabbits.RabAlter5(Integer.parseInt(r5.getText()));
+				}
+				if(r6.getText() != "" && r6.getText() != " ") {
+				rabbits.RabAlter6(Integer.parseInt(r6.getText()));
+				}
+				
+				for (int i = 0; i < wolves.WolSend1(); ++i) {	// test way of creating multiple individual wolves
+					Wolves.wolvs[i] = new Wolves();
+				}
+				
+				
 			}
 		});
 		c.gridx = 3;
@@ -287,7 +312,8 @@ public class Simulation {
 	
 	public static class Wolves {
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
-		public Wolves() {																		//numbered to keep them in mind more easily
+		private static Object wolvs[] = {};
+		public Wolves() {														//numbered to keep them in mind more easily
 			WolNum1 = 10;	//initial values
 			WolMeta2 = 10;	//just placeholder
 			WolFS3 = 50;
@@ -295,6 +321,11 @@ public class Simulation {
 			WolOld5 = 50;
 			WolChance6 = 75;
 		}
+		//public void makeWolves(int n) {
+		//	for (int i = 0; i < n; ++i) {
+		//		wolvs[i] = new Wolves();
+		//	}
+		//}
 		public int WolAlter1(int placehold) { 
 			WolNum1 = placehold;				//they all change the initial values
 			return(WolNum1);					//and return them
@@ -341,6 +372,7 @@ public class Simulation {
 			a = WolChance6/100;
 			return(a);
 		}
+		
 	}
 	
 	public static class Rabbits {
@@ -358,7 +390,7 @@ public class Simulation {
 		}
 		
 		public int RabAlter1(int placehold) {
-			RabNum1 = placehold;              //for changing the values
+			RabNum1 = placehold;              //for changing the values, also returns them
 			return(RabNum1);
 		}
 		public int RabAlter2(int placehold) {
@@ -384,7 +416,7 @@ public class Simulation {
 			return(a);
 		}
 		public int RabSend1() {
-			return(RabNum1);
+			return(RabNum1);		//just returns the values
 		}
 		public int RabSend2() {
 			return(RabMeta2);
