@@ -15,7 +15,10 @@ public class Simulation {
  * Jack on rabbits
  * Devin on the environment
  */
+
 	Random r = new Random();
+
+
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
@@ -241,7 +244,7 @@ public class Simulation {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				int Space;
+				int Space;		//For storing the random int for the space an animal is placed
 				
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
 					grid[i].setText("g");
@@ -361,48 +364,43 @@ public class Simulation {
 	
 	public static class Rabbits {
 		
-		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6; //based on Jesus's code I should only need 6 variables, if not i can add some later
+		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
 		public Rabbits () {
 			
+
 			RabNum1 = 10; //placeholder value, mostly for testing stuff
 			RabMeta2 = 10; //also a placeholder value
+			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
+			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
 			RabFS3 = 15; //initial amount of food
 			RabFM4 = 40; //maximum amount of food
 			RabOld5 = 25; //maximum age
-
 			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
+			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
 
 			
 		}
 		
-		public int RabAlter1(int placehold) {
+		public void RabAlter1(int placehold) {
 			RabNum1 = placehold;              //for changing the values
-			return(RabNum1);
 		}
-		public int RabAlter2(int placehold) {
+		public void RabAlter2(int placehold) {
 			RabMeta2 = placehold;
-			return(RabMeta2);
 		}
-		public int RabAlter3(int placehold) {
+		public void RabAlter3(int placehold) {
 			RabFS3 = placehold;
-			return(RabFS3);
 		}
-		public int RabAlter4(int placehold) {
+		public void RabAlter4(int placehold) {
 			RabFM4 = placehold;
-			return(RabFM4);
 		}
-		public int RabAlter5(int placehold) {
+		public void RabAlter5(int placehold) {
 			RabOld5 = placehold;
-			return(RabOld5);
 		}
-		public int RabAlter6(int placehold) {
-			int a;
+		public void RabAlter6(int placehold) {
 			RabChance6 = placehold;
-			a = RabChance6/100;
-			return(a);
 		}
 		public int RabSend1() {
-			return(RabNum1);
+			return(RabNum1);              //for returning the values
 		}
 		public int RabSend2() {
 			return(RabMeta2);
@@ -420,6 +418,49 @@ public class Simulation {
 			double b;
 			b = RabChance6/100;
 			return(b);
+		}
+		
+		public void RabEat() {
+			
+			//placeholder, come back to this later when the grass code is ready
+			
+		}
+		
+		public void RabMove() {
+			
+			//placeholder, come back to this later when the grass code is ready
+			
+		}
+		
+		public void RabAge() {
+			
+			// evertime new day is pressed the age goes up by 1
+			
+			int age[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+			
+			for(int i=0; i<age.length; i++) {
+				
+				if(age[i] != 0) {
+					
+					age[i]++;
+					
+					if(age[i]>RabOld5) {
+						
+						age[i] = 0;
+						RabDeath7++;
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		public void RabRepro() {
+			
+			//placeholder, come back to this later when the grass code is ready
+			
 		}
 		
 	}
