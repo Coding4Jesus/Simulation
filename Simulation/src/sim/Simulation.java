@@ -345,6 +345,7 @@ public class Simulation {
 	public static class Rabbits {
 		
 		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
+		public int[] food = new int[100], age = new int[100];
 		public Rabbits () {
 			
 			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
@@ -354,6 +355,17 @@ public class Simulation {
 			RabOld5 = 25; //maximum age
 			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
 			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
+			
+			for(int i = 0; i < food.length; i++) {
+				
+				food[i] = RabFS3;
+				
+			}
+			for(int i = 0; i < age.length; i++) {
+				
+				age[i] = 0;
+				
+			}
 			
 		}
 		
@@ -398,21 +410,28 @@ public class Simulation {
 		
 		public void RabEat() {
 			
-			//placeholder, come back to this later when the grass code is ready
+			// everytime new day is pressed each rabbit needs to attempt to eat (random?)
+			
+			for(int i = 0; i < food.length; i++) {
+				
+				
+				
+			}
 			
 		}
 		
 		public void RabMove() {
 			
-			//placeholder, come back to this later when the grass code is ready
+			// evertime new day is pressed all rabbits must move to a random spot either to the north, east, south or west of where they just were. 
+			// which direction they go is random but with higher chances to go away from wolves.
+			
+			
 			
 		}
 		
 		public void RabAge() {
 			
 			// evertime new day is pressed the age goes up by 1
-			
-			int age[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			
 			for(int i=0; i<age.length; i++) {
 				
@@ -423,6 +442,7 @@ public class Simulation {
 					if(age[i]>RabOld5) {
 						
 						age[i] = 0;
+						food[i] = RabFS3;
 						RabDeath7++;
 						
 					}
@@ -435,7 +455,11 @@ public class Simulation {
 		
 		public void RabRepro() {
 			
-			//placeholder, come back to this later when the grass code is ready
+			// everytime a new day is pressed rabbits have a chance to reproduce if: 
+			// there are two rabbits adjacent to eachother, they have eaten atleast half the max food,
+			//  there are no wolves nearby and they are atleast half the max age
+			
+			
 			
 		}
 		
