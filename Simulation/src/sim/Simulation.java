@@ -183,11 +183,11 @@ public class Simulation {
 		
 		grid = new JButton[100];
 		
-		int[] b;
-		b = new int[100];
+		int[] grassNum;
+		grassNum = new int[100];
 		
 		for (int a = 0; a < 100 ; a++) {	//Stores a 1 for grass, will change to 0 if it is eaten
-			b[a] = 1;
+			grassNum[a] = 1;
 			
 		}
 		
@@ -368,9 +368,7 @@ public class Simulation {
 		public int[] food = new int[100], age = new int[100];
 		public Rabbits () {
 			
-
-			RabNum1 = 10; //placeholder value, mostly for testing stuff
-			RabMeta2 = 10; //also a placeholder value
+			
 			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
 			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
 			RabFS3 = 15; //initial amount of food
@@ -378,7 +376,7 @@ public class Simulation {
 			RabOld5 = 25; //maximum age
 			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
 			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
-
+			
 			
 			for(int i = 0; i < food.length; i++) {
 				
@@ -438,8 +436,12 @@ public class Simulation {
 			
 			for(int i = 0; i < food.length; i++) {
 				
-				
-				
+				/*if() {
+					
+					
+					
+				}
+				*/
 			}
 			
 		}
@@ -449,7 +451,15 @@ public class Simulation {
 			// evertime new day is pressed all rabbits must move to a random spot either to the north, east, south or west of where they just were. 
 			// which direction they go is random but with higher chances to go away from wolves.
 			
+			int moveChan = 0; // for randomizing where the rabbits will go
 			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				
+				
+				
+			}
 			
 		}
 		
@@ -465,9 +475,9 @@ public class Simulation {
 					
 					if(age[i]>RabOld5) {
 						
-						age[i] = 0;
+						age[i] = 0;     // sets values back to default
 						food[i] = RabFS3;
-						RabDeath7++;
+						RabDeath7++;   // adds a body to the kill count >:)
 						
 					}
 					
@@ -483,7 +493,13 @@ public class Simulation {
 			// there are two rabbits adjacent to eachother, they have eaten atleast half the max food,
 			//  there are no wolves nearby and they are atleast half the max age
 			
+			int wahooChan = 0; // for storing repro chance during check
 			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				
+			}
 			
 		}
 		
