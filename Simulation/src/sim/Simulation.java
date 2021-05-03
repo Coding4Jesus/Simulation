@@ -183,15 +183,18 @@ public class Simulation {
 		
 		grid = new JButton[100];
 		
-		int[] b;
-		b = new int[100];
 		
-		for (int a = 0; a < 100 ; a++) {	//Stores a 1 for grass, will change to 0 if it is eaten
-			b[a] = 1;
-			
-		}
+		int[] grassNum;				//Array for which spots in the grid have grass
+		grassNum = new int[100];	//1 if there is grass, will change to 0 when there isn't
+		
+		int[] rabbitNum;			//Array for which spots in the grid have rabbits
+		rabbitNum = new int[100];	//0 if there is no rabbit, will change to 1 when there is
+		
+		int[] wolfNum;				//Array for which spots in the grid have wolves
+		wolfNum = new int[100];		//0 if there is no wolf, will change to 1 when there is
 		
 		
+					
 		for(int i = 0; i<grid.length; i++) {  //builds the grid for the simulation 
 			grid[i] = new JButton(" ");
 			c.gridx = i+4;
@@ -247,26 +250,33 @@ public class Simulation {
 				int Space;		//For storing the random int for the space an animal is placed
 				
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
-					grid[i].setText("g");
+					grid[i].setText("g");			
+					grassNum[i] = 1;				//Stores a 1 for each grass spot
+					
+					
 				}
 				
 				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
 					Space = r.nextInt(99-0+1)+0;
-					System.out.println(Space);
 					if(grid[Space].getText().equals("W")) {		
 						i = i-1;
 					}else {
 						grid[Space].setText("W");
 					}
+					
+					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 				}
 				
 				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
 					Space = r.nextInt(99-0+1)+0;
+					System.out.println(i);
 					if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
 						i = i-1;
 					}else {
 						grid[Space].setText("R");
 					}
+					
+					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
 				}
 				
 			}
@@ -368,8 +378,7 @@ public class Simulation {
 		public Rabbits () {
 			
 
-			RabNum1 = 10; //placeholder value, mostly for testing stuff
-			RabMeta2 = 10; //also a placeholder value
+			
 			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
 			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
 			RabFS3 = 15; //initial amount of food
