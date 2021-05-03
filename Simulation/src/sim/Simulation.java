@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -14,6 +15,10 @@ public class Simulation {
  * Jack on rabbits
  * Devin on the environment
  */
+
+	Random r = new Random();
+
+
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
@@ -26,13 +31,15 @@ public class Simulation {
 		Grass = "G";
 		Rabbit = "R";
 		Wolf = "W";
-
+		
+		Wolves wolves = new Wolves();
+		Rabbits rabbits = new Rabbits();
 
 		frame = new JFrame("Rabbit & Wolf Sim");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 800);
+		frame.setSize(850, 850);
 		frame.setLocationRelativeTo(null);
-		Wolves wolves = new Wolves();
+		
 		
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -176,19 +183,14 @@ public class Simulation {
 		
 		grid = new JButton[100];
 		
-		String[] b;
-		b = new String[100];
+		int[] b;
+		b = new int[100];
 		
-		for (int a = 0; a < 100 ; a++) {	//hopefully 100 strings, 0 as "1", 1 as "2" etc. 
-			String ba;
-			ba = Integer.toString(a+1);
-			b[a] = ba;
+		for (int a = 0; a < 100 ; a++) {	//Stores a 1 for grass, will change to 0 if it is eaten
+			b[a] = 1;
+			
 		}
-		//String b[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-		//		    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
-		//		    "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60",
-		//		    "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80",
-		//		    "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"};
+		
 		
 		for(int i = 0; i<grid.length; i++) {  //builds the grid for the simulation 
 			grid[i] = new JButton(" ");
@@ -229,34 +231,42 @@ public class Simulation {
 			if (i > 89) {
 				c.gridx = i - 86;
 				c.gridy = 11;
-	}
+			}
+			
+			
 			panel.add(grid[i], c);
-			System.out.println(i);
 		}
 			
-			
+		 
 		
 		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(w1.getText() != "" && w1.getText() != " ") {		
-				wolves.WolAlter1(Integer.parseInt(w1.getText()));	//parses all input to ints and inserts them into the wolves class
-				}													//also checks for no empty text boxes
-				if(w2.getText() != "" && w2.getText() != " ") {
-				wolves.WolAlter2(Integer.parseInt(w2.getText()));
+				
+				int Space;		//For storing the random int for the space an animal is placed
+				
+				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
+					grid[i].setText("g");
 				}
-				if(w3.getText() != "" && w3.getText() != " "){
-				wolves.WolAlter3(Integer.parseInt(w3.getText()));
+				
+				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
+					Space = r.nextInt(99-0+1)+0;
+					System.out.println(Space);
+					if(grid[Space].getText().equals("W")) {		
+						i = i-1;
+					}else {
+						grid[Space].setText("W");
+					}
 				}
-				if(w4.getText() != "" && w4.getText() != " ") {
-				wolves.WolAlter4(Integer.parseInt(w4.getText()));
-				}
-				if(w5.getText() != "" && w5.getText() != " ") {
-				wolves.WolAlter5(Integer.parseInt(w5.getText()));
-				}
-				if(w6.getText() != "" && w6.getText() != " ") {
-				wolves.WolAlter6(Integer.parseInt(w6.getText()));
+				
+				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
+					Space = r.nextInt(99-0+1)+0;
+					if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
+						i = i-1;
+					}else {
+						grid[Space].setText("R");
+					}
 				}
 				
 			}
@@ -266,6 +276,16 @@ public class Simulation {
 		panel.add(start, c);
 		
 		nextDay = new JButton("Next Day");
+
+		nextDay.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+			
+		});
 		
 		c.gridx = 3;
 		c.gridy = 1;
@@ -348,6 +368,9 @@ public class Simulation {
 		public int[] food = new int[100], age = new int[100];
 		public Rabbits () {
 			
+
+			RabNum1 = 10; //placeholder value, mostly for testing stuff
+			RabMeta2 = 10; //also a placeholder value
 			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
 			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
 			RabFS3 = 15; //initial amount of food
@@ -355,6 +378,7 @@ public class Simulation {
 			RabOld5 = 25; //maximum age
 			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
 			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
+
 			
 			for(int i = 0; i < food.length; i++) {
 				
