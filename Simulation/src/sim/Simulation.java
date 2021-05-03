@@ -24,13 +24,9 @@ public class Simulation {
 	private JButton[] grid;
 	private JButton start, nextDay;
 	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, space;
-	private String Grass, Rabbit, Wolf;
 	private JTextField w1, w2, w3, w4, w5, w6, r1, r2, r3, r4, r5, r6;
 	
 	public Simulation() {
-		Grass = "G";
-		Rabbit = "R";
-		Wolf = "W";
 		
 		Wolves wolves = new Wolves();
 		Rabbits rabbits = new Rabbits();
