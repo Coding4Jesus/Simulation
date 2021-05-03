@@ -178,7 +178,7 @@ public class Simulation {
 		start = new JButton("Set Parameters");
 		
 		grid = new JButton[100];
-		
+
 		
 		int[] grassNum;				//Array for which spots in the grid have grass
 		grassNum = new int[100];	//1 if there is grass, will change to 0 when there isn't
@@ -371,9 +371,9 @@ public class Simulation {
 	public static class Rabbits {
 		
 		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
+		public int[] food = new int[100], age = new int[100], FooMiss = new int[100];
 		public Rabbits () {
 			
-
 			
 			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
 			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
@@ -382,7 +382,23 @@ public class Simulation {
 			RabOld5 = 25; //maximum age
 			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
 			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
-
+			
+			
+			for(int i = 0; i < food.length; i++) {
+				
+				food[i] = RabFS3;
+				
+			}
+			for(int i = 0; i < age.length; i++) {
+				
+				age[i] = 0;
+				
+			}
+            for(int i = 0; i < FooMiss.length; i++) {
+				
+				FooMiss[i] = 0;
+				
+			}
 			
 		}
 		
@@ -425,23 +441,64 @@ public class Simulation {
 			return(b);
 		}
 		
-		public void RabEat() {
+		public void RabEat(int placehold[], int placehold2[]) {
 			
-			//placeholder, come back to this later when the grass code is ready
+			// everytime new day is pressed each rabbit needs to attempt to eat (random?)
+			
+			
+			
+			for(int i = 0; i < food.length; i++) {			
+					
+				if(placehold[i] == 1) { // RABBIT PLACEHOLD CHECK
+					
+					if(placehold2[i] == 1) { // GRASS PLACEHOLD CHECK
+						
+						if(food[i] + 2 < RabFM4) {  // check to see if eating will put them over the limit
+							
+							food[i] = food[i] + 2;
+							
+						}
+						
+					}else {
+						
+						FooMiss[i]++;
+						
+						if(FooMiss[i] == 3) {
+							
+							age[i] = 0;     // sets values back to default
+							food[i] = RabFS3;
+							RabDeath7++;   // adds a body to the kill count >:)
+							
+						}
+						
+					}
+					
+				}
+				
+			}
 			
 		}
 		
 		public void RabMove() {
 			
-			//placeholder, come back to this later when the grass code is ready
+			// evertime new day is pressed all rabbits must move to a random spot either to the north, east, south or west of where they just were. 
+			// which direction they go is random but with higher chances to go away from wolves.
+			
+			int moveChan = 0; // for randomizing where the rabbits will go
+			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				
+				
+				
+			}
 			
 		}
 		
 		public void RabAge() {
 			
 			// evertime new day is pressed the age goes up by 1
-			
-			int age[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 			
 			for(int i=0; i<age.length; i++) {
 				
@@ -451,8 +508,9 @@ public class Simulation {
 					
 					if(age[i]>RabOld5) {
 						
-						age[i] = 0;
-						RabDeath7++;
+						age[i] = 0;     // sets values back to default
+						food[i] = RabFS3;
+						RabDeath7++;   // adds a body to the kill count >:)
 						
 					}
 					
@@ -464,7 +522,17 @@ public class Simulation {
 		
 		public void RabRepro() {
 			
-			//placeholder, come back to this later when the grass code is ready
+			// everytime a new day is pressed rabbits have a chance to reproduce if: 
+			// there are two rabbits adjacent to eachother, they have eaten atleast half the max food,
+			//  there are no wolves nearby and they are atleast half the max age
+			
+			int wahooChan = 0; // for storing repro chance during check
+			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				
+			}
 			
 		}
 		
