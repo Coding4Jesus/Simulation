@@ -376,6 +376,7 @@ public class Simulation {
 		
 		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
 		public int[] food = new int[100], age = new int[100], FooMiss = new int[100];
+		Random r = new Random();
 		public Rabbits () {
 			
 			
@@ -461,6 +462,8 @@ public class Simulation {
 							
 							food[i] = food[i] + 2;
 							
+							FooMiss[i] = 0; // marking down that it has ate, don't want them starving while eating
+							
 						}
 						
 					}else {
@@ -483,7 +486,7 @@ public class Simulation {
 			
 		}
 		
-		public void RabMove() {
+		public int RabMove(int placehold[], int placehold2[]) {
 			
 			// evertime new day is pressed all rabbits must move to a random spot either to the north, east, south or west of where they just were. 
 			// which direction they go is random but with higher chances to go away from wolves.
@@ -493,7 +496,144 @@ public class Simulation {
 			for(int i = 0; i < 100; i++) {
 				
 				
-				
+				if(placehold[i] == 1) { // making sure there's a rabbit to move
+					
+					if(placehold2[i] + 1 == 1|| placehold2[i] + 2 == 1) { // checking if theres a wolf to the right
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+						if(moveChan == 1 || moveChan == 2) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}
+						
+						
+					}else if(placehold2[i] - 1 == 1|| placehold2[i] - 2 == 1) { // checking if theres a wolf to the left
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+                        if(moveChan == 1 || moveChan == 2) { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}
+						
+					}else if(placehold2[i] + 10 == 1|| placehold2[i] + 20 == 1) { // checking if theres a wolf below
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+                        if(moveChan == 1 || moveChan == 2) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}
+						
+					}else if(placehold2[i] - 10 == 1|| placehold2[i] - 20 == 1) { // checking if theres a wolf above
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+                        if(moveChan == 1 || moveChan == 2) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}
+						
+					}else { // if theres no wolf
+						
+						moveChan = r.nextInt(4-1+1)+0;
+						
+                        if(moveChan == 1) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+							return (placehold[]);
+							
+						}else if(moveChan == 2) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else if(moveChan == 3) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}
+						
+					}
+					
+				}
 				
 				
 			}
