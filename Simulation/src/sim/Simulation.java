@@ -536,7 +536,7 @@ public class Simulation {
 			
 		}
 		
-		public int RabMove(int placehold[], int placehold2[]) {
+		public int[] RabMove(int placehold[], int placehold2[]) {
 			
 			// evertime new day is pressed all rabbits must move to a random spot either to the north, east, south or west of where they just were. 
 			// which direction they go is random but with higher chances to go away from wolves.
@@ -662,8 +662,6 @@ public class Simulation {
 							placehold[i] = 0;
 							placehold[i - 1] = 1;
 							
-							return (placehold[]);
-							
 						}else if(moveChan == 2) { // move up
 							
 							placehold[i] = 0;
@@ -687,6 +685,8 @@ public class Simulation {
 				
 				
 			}
+			
+			return placehold;
 			
 		}
 		
