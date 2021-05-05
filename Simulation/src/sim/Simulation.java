@@ -4,6 +4,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.*;
 
@@ -14,6 +15,9 @@ public class Simulation {
  * Jack on rabbits
  * Devin on the environment
  */
+
+	Random r = new Random();
+
 
 	private JFrame frame;
 	private JPanel panel;
@@ -27,14 +31,20 @@ public class Simulation {
 		Grass = "G";
 		Rabbit = "R";
 		Wolf = "W";
-
+		
+		Wolves wolves = new Wolves();
+		Rabbits rabbits = new Rabbits();
 
 		frame = new JFrame("Rabbit & Wolf Sim");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(800, 800);
+		frame.setSize(850, 850);
 		frame.setLocationRelativeTo(null);
+<<<<<<< HEAD
 		Wolves wolves = new Wolves();
 		Rabbits rabbits = new Rabbits();
+=======
+		
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 		
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -183,21 +193,19 @@ public class Simulation {
 		start = new JButton("Set Parameters");
 		
 		grid = new JButton[100];
+
 		
-		String[] b;
-		b = new String[100];
+		int[] grassNum;				//Array for which spots in the grid have grass
+		grassNum = new int[100];	//1 if there is grass, will change to 0 when there isn't
 		
-		for (int a = 0; a < 100 ; a++) {	//hopefully 100 strings, 0 as "1", 1 as "2" etc. 
-			String ba;
-			ba = Integer.toString(a+1);
-			b[a] = ba;
-		}
-		//String b[] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-		//		    "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40",
-		//		    "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60",
-		//		    "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80",
-		//		    "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"};
+		int[] rabbitNum;			//Array for which spots in the grid have rabbits
+		rabbitNum = new int[100];	//0 if there is no rabbit, will change to 1 when there is
 		
+		int[] wolfNum;				//Array for which spots in the grid have wolves
+		wolfNum = new int[100];		//0 if there is no wolf, will change to 1 when there is
+		
+		
+					
 		for(int i = 0; i<grid.length; i++) {  //builds the grid for the simulation 
 			grid[i] = new JButton(" ");
 			c.gridx = i+4;
@@ -238,10 +246,15 @@ public class Simulation {
 				c.gridx = i - 86;
 				c.gridy = 11;
 			}
+<<<<<<< HEAD
+=======
+			
+			
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 			panel.add(grid[i], c);
-			System.out.println(i);
 		}
 			
+<<<<<<< HEAD
 			System.out.println(w1.getText());			//debugging
 			if(Integer.parseInt(w1.getText()) == 10) {	//
 				System.out.println("EEEEE");			//
@@ -249,11 +262,15 @@ public class Simulation {
 			else {										//
 				System.out.println("BBB");				//
 			}											//debugging
+=======
+		 
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 		
 		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+<<<<<<< HEAD
 				if(Integer.parseInt(w1.getText()) > 0) {		
 					wolves.WolAlter1(Integer.parseInt(w1.getText()));	//inserts them into the wolves class
 					//wolves.makeWolves(wolves.WolSend1());
@@ -266,13 +283,37 @@ public class Simulation {
 					System.out.println(wolves.WolSend2());
 				}else {
 					System.out.println("try again2");
+=======
+				
+				int Space;		//For storing the random int for the space an animal is placed
+				
+				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
+					grid[i].setText("g");			
+					grassNum[i] = 1;				//Stores a 1 for each grass spot
+					
+					
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 				}
+<<<<<<< HEAD
 				if(Integer.parseInt(w3.getText())	> 0) {
 					wolves.WolAlter3(Integer.parseInt(w3.getText()));
 					System.out.println(wolves.WolSend3());
 				}else {
 					System.out.println("try again3");
+=======
+				
+				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
+					Space = r.nextInt(99-0+1)+0;
+					if(grid[Space].getText().equals("W")) {		
+						i = i-1;
+					}else {
+						grid[Space].setText("W");
+					}
+					
+					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 				}
+<<<<<<< HEAD
 				if(Integer.parseInt(w4.getText())	> 0) {
 					wolves.WolAlter4(Integer.parseInt(w4.getText()));
 					System.out.println(wolves.WolSend4());
@@ -290,6 +331,19 @@ public class Simulation {
 					System.out.println(wolves.WolSend6());
 				}else {
 					System.out.println("try again6");
+=======
+				
+				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
+					Space = r.nextInt(99-0+1)+0;
+					System.out.println(i);
+					if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
+						i = i-1;
+					}else {
+						grid[Space].setText("R");
+					}
+					
+					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 				}
 					
 			}
@@ -299,6 +353,16 @@ public class Simulation {
 		panel.add(start, c);
 		
 		nextDay = new JButton("Next Day");
+
+		nextDay.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				
+			}
+			
+		});
 		
 		c.gridx = 3;
 		c.gridy = 1;
@@ -384,46 +448,68 @@ public class Simulation {
 	
 	public static class Rabbits {
 		
-		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6; //based on Jesus's code I should only need 6 variables, if not i can add some later
+		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
+		public int[] food = new int[100], age = new int[100], FooMiss = new int[100];
 		public Rabbits () {
 			
-			RabNum1 = 10; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
+			
+			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
 			RabMeta2 = 10; //also a placeholder value       the value that stores the rabbit's metabolism
 			RabFS3 = 15; //initial amount of food
 			RabFM4 = 40; //maximum amount of food
 			RabOld5 = 25; //maximum age
 			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
+			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
+			
+			
+			for(int i = 0; i < food.length; i++) {
+				
+				food[i] = RabFS3;
+				
+			}
+			for(int i = 0; i < age.length; i++) {
+				
+				age[i] = 0;
+				
+			}
+            for(int i = 0; i < FooMiss.length; i++) {
+				
+				FooMiss[i] = 0;
+				
+			}
 			
 		}
 		
+<<<<<<< HEAD
 		public int RabAlter1(int placehold) {
 			RabNum1 = placehold;              //for changing the values, also returns them
 			return(RabNum1);
+=======
+		public void RabAlter1(int placehold) {
+			RabNum1 = placehold;              //for changing the values
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 		}
-		public int RabAlter2(int placehold) {
+		public void RabAlter2(int placehold) {
 			RabMeta2 = placehold;
-			return(RabMeta2);
 		}
-		public int RabAlter3(int placehold) {
+		public void RabAlter3(int placehold) {
 			RabFS3 = placehold;
-			return(RabFS3);
 		}
-		public int RabAlter4(int placehold) {
+		public void RabAlter4(int placehold) {
 			RabFM4 = placehold;
-			return(RabFM4);
 		}
-		public int RabAlter5(int placehold) {
+		public void RabAlter5(int placehold) {
 			RabOld5 = placehold;
-			return(RabOld5);
 		}
-		public int RabAlter6(int placehold) {
-			int a;
+		public void RabAlter6(int placehold) {
 			RabChance6 = placehold;
-			a = RabChance6/100;
-			return(a);
 		}
 		public int RabSend1() {
+<<<<<<< HEAD
 			return(RabNum1);		//just returns the values
+=======
+			return(RabNum1);              //for returning the values
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 		}
 		public int RabSend2() {
 			return(RabMeta2);
@@ -441,6 +527,101 @@ public class Simulation {
 			double b;
 			b = RabChance6/100;
 			return(b);
+		}
+		
+		public void RabEat(int placehold[], int placehold2[]) {
+			
+			// everytime new day is pressed each rabbit needs to attempt to eat (random?)
+			
+			
+			
+			for(int i = 0; i < food.length; i++) {			
+					
+				if(placehold[i] == 1) { // RABBIT PLACEHOLD CHECK
+					
+					if(placehold2[i] == 1) { // GRASS PLACEHOLD CHECK
+						
+						if(food[i] + 2 < RabFM4) {  // check to see if eating will put them over the limit
+							
+							food[i] = food[i] + 2;
+							
+						}
+						
+					}else {
+						
+						FooMiss[i]++;
+						
+						if(FooMiss[i] == 3) {
+							
+							age[i] = 0;     // sets values back to default
+							food[i] = RabFS3;
+							RabDeath7++;   // adds a body to the kill count >:)
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		public void RabMove() {
+			
+			// evertime new day is pressed all rabbits must move to a random spot either to the north, east, south or west of where they just were. 
+			// which direction they go is random but with higher chances to go away from wolves.
+			
+			int moveChan = 0; // for randomizing where the rabbits will go
+			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				
+				
+				
+			}
+			
+		}
+		
+		public void RabAge() {
+			
+			// evertime new day is pressed the age goes up by 1
+			
+			for(int i=0; i<age.length; i++) {
+				
+				if(age[i] != 0) {
+					
+					age[i]++;
+					
+					if(age[i]>RabOld5) {
+						
+						age[i] = 0;     // sets values back to default
+						food[i] = RabFS3;
+						RabDeath7++;   // adds a body to the kill count >:)
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		public void RabRepro() {
+			
+			// everytime a new day is pressed rabbits have a chance to reproduce if: 
+			// there are two rabbits adjacent to eachother, they have eaten atleast half the max food,
+			//  there are no wolves nearby and they are atleast half the max age
+			
+			int wahooChan = 0; // for storing repro chance during check
+			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				
+			}
+			
 		}
 		
 	}
