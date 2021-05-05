@@ -268,25 +268,25 @@ public class Simulation {
 					System.out.println("try again2");
 				}
 				if(Integer.parseInt(w3.getText())	> 0) {
-					wolves.WolAlter2(Integer.parseInt(w3.getText()));
+					wolves.WolAlter3(Integer.parseInt(w3.getText()));
 					System.out.println(wolves.WolSend3());
 				}else {
 					System.out.println("try again3");
 				}
 				if(Integer.parseInt(w4.getText())	> 0) {
-					wolves.WolAlter2(Integer.parseInt(w4.getText()));
+					wolves.WolAlter4(Integer.parseInt(w4.getText()));
 					System.out.println(wolves.WolSend4());
 				}else {
 					System.out.println("try again4");
 				}
 				if(Integer.parseInt(w5.getText())	> 0) {
-					wolves.WolAlter2(Integer.parseInt(w5.getText()));
+					wolves.WolAlter5(Integer.parseInt(w5.getText()));
 					System.out.println(wolves.WolSend5());
 				}else {
 					System.out.println("try again5");
 				}
 				if(Integer.parseInt(w6.getText())	> 0) {
-					wolves.WolAlter2(Integer.parseInt(w6.getText()));
+					wolves.WolAlter6(Integer.parseInt(w6.getText()));
 					System.out.println(wolves.WolSend6());
 				}else {
 					System.out.println("try again6");
