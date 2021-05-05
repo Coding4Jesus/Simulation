@@ -48,6 +48,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 1;
 		panel.add(w1, c);
+		w1.setText("10");
 		
 		l1 = new JLabel("# of wolves at start ");
 		c.gridx = 1;
@@ -58,6 +59,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 2;
 		panel.add(w2, c);
+		w2.setText("10");
 		
 		l2 = new JLabel("Metabolism rate ");
 		c.gridx = 1;
@@ -68,16 +70,18 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 3;
 		panel.add(w3, c);
+		w3.setText("50");
 		
 		l3 = new JLabel("Amount of food at start ");
 		c.gridx = 1;
 		c.gridy = 3;
-		panel.add(l3, c);
+		panel.add(l3, c);	
 		
 		w4 = new JTextField(10);
 		c.gridx = 2;
 		c.gridy = 4;
 		panel.add(w4, c);
+		w4.setText("150");
 		
 		l4 = new JLabel("Max food allowed ");
 		c.gridx = 1;
@@ -88,6 +92,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 5;
 		panel.add(w5, c);
+		w5.setText("50");
 		
 		l5 = new JLabel("Max age ");
 		c.gridx = 1;
@@ -98,6 +103,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 6;
 		panel.add(w6, c);
+		w6.setText("75");
 		
 		l6 = new JLabel("Reproduction probability ");
 		c.gridx = 1;
@@ -236,55 +242,56 @@ public class Simulation {
 			System.out.println(i);
 		}
 			
-			
+			System.out.println(w1.getText());			//debugging
+			if(Integer.parseInt(w1.getText()) == 10) {	//
+				System.out.println("EEEEE");			//
+			}											//
+			else {										//
+				System.out.println("BBB");				//
+			}											//debugging
 		
 		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(w1.getText() != "" && w1.getText() != " ") {		
-				wolves.WolAlter1(Integer.parseInt(w1.getText()));	//parses all input to ints and inserts them into the wolves class
-				}													//also checks for no empty text boxes
-				if(w2.getText() != "" && w2.getText() != " ") {
-				wolves.WolAlter2(Integer.parseInt(w2.getText()));
+				if(Integer.parseInt(w1.getText()) > 0) {		
+					wolves.WolAlter1(Integer.parseInt(w1.getText()));	//inserts them into the wolves class
+					//wolves.makeWolves(wolves.WolSend1());
+					System.out.println(wolves.WolSend1());
+				}else {													//also checks for no empty text boxes
+					System.out.println("try again1");
+				}											 			//calls method to create wolves
+				if(Integer.parseInt(w2.getText())	> 0) {
+					wolves.WolAlter2(Integer.parseInt(w2.getText()));
+					System.out.println(wolves.WolSend2());
+				}else {
+					System.out.println("try again2");
 				}
-				if(w3.getText() != "" && w3.getText() != " "){
-				wolves.WolAlter3(Integer.parseInt(w3.getText()));
+				if(Integer.parseInt(w3.getText())	> 0) {
+					wolves.WolAlter2(Integer.parseInt(w3.getText()));
+					System.out.println(wolves.WolSend3());
+				}else {
+					System.out.println("try again3");
 				}
-				if(w4.getText() != "" && w4.getText() != " ") {
-				wolves.WolAlter4(Integer.parseInt(w4.getText()));
+				if(Integer.parseInt(w4.getText())	> 0) {
+					wolves.WolAlter2(Integer.parseInt(w4.getText()));
+					System.out.println(wolves.WolSend4());
+				}else {
+					System.out.println("try again4");
 				}
-				if(w5.getText() != "" && w5.getText() != " ") {
-				wolves.WolAlter5(Integer.parseInt(w5.getText()));
+				if(Integer.parseInt(w5.getText())	> 0) {
+					wolves.WolAlter2(Integer.parseInt(w5.getText()));
+					System.out.println(wolves.WolSend5());
+				}else {
+					System.out.println("try again5");
 				}
-				if(w6.getText() != "" && w6.getText() != " ") {
-				wolves.WolAlter6(Integer.parseInt(w6.getText()));
+				if(Integer.parseInt(w6.getText())	> 0) {
+					wolves.WolAlter2(Integer.parseInt(w6.getText()));
+					System.out.println(wolves.WolSend6());
+				}else {
+					System.out.println("try again6");
 				}
-				
-				if(r1.getText() != "" && r1.getText() != " ") {		
-				rabbits.RabAlter1(Integer.parseInt(r1.getText()));	//same but for rabbits
-				}													
-				if(r2.getText() != "" && r2.getText() != " ") {
-				rabbits.RabAlter2(Integer.parseInt(r2.getText()));
-				}
-				if(r3.getText() != "" && r3.getText() != " "){
-				rabbits.RabAlter3(Integer.parseInt(r3.getText()));
-				}
-				if(r4.getText() != "" && r4.getText() != " ") {
-				rabbits.RabAlter4(Integer.parseInt(r4.getText()));
-				}
-				if(r5.getText() != "" && r5.getText() != " ") {
-				rabbits.RabAlter5(Integer.parseInt(r5.getText()));
-				}
-				if(r6.getText() != "" && r6.getText() != " ") {
-				rabbits.RabAlter6(Integer.parseInt(r6.getText()));
-				}
-				
-				for (int i = 0; i < wolves.WolSend1(); ++i) {	// test way of creating multiple individual wolves
-					Wolves.wolvs[i] = new Wolves();
-				}
-				
-				
+					
 			}
 		});
 		c.gridx = 3;
@@ -312,7 +319,7 @@ public class Simulation {
 	
 	public static class Wolves {
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
-		private static Object wolvs[] = {};
+		private static Object wolvs[];
 		public Wolves() {														//numbered to keep them in mind more easily
 			WolNum1 = 10;	//initial values
 			WolMeta2 = 10;	//just placeholder
@@ -321,11 +328,11 @@ public class Simulation {
 			WolOld5 = 50;
 			WolChance6 = 75;
 		}
-		//public void makeWolves(int n) {
-		//	for (int i = 0; i < n; ++i) {
-		//		wolvs[i] = new Wolves();
-		//	}
-		//}
+		public void makeWolves(int n) {
+			for (int i = 0; i < n; ++i) {
+				wolvs[i] = new Wolves();
+			}
+		}
 		public int WolAlter1(int placehold) { 
 			WolNum1 = placehold;				//they all change the initial values
 			return(WolNum1);					//and return them
@@ -346,8 +353,8 @@ public class Simulation {
 			WolOld5 = placehold;
 			return(WolOld5);
 		}
-		public int WolAlter6(int placehold) {
-			int a;
+		public double WolAlter6(int placehold) {
+			double a;
 			WolChance6 = placehold;
 			a = WolChance6/100;
 			return(a);
@@ -367,8 +374,8 @@ public class Simulation {
 		public int WolSend5() {
 			return(WolOld5);
 		}
-		public int WolSend6() {
-			int a;
+		public double WolSend6() {
+			double a;
 			a = WolChance6/100;
 			return(a);
 		}
