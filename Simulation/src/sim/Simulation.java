@@ -39,12 +39,6 @@ public class Simulation {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(850, 850);
 		frame.setLocationRelativeTo(null);
-<<<<<<< HEAD
-		Wolves wolves = new Wolves();
-		Rabbits rabbits = new Rabbits();
-=======
-		
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 		
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
@@ -246,15 +240,10 @@ public class Simulation {
 				c.gridx = i - 86;
 				c.gridy = 11;
 			}
-<<<<<<< HEAD
-=======
-			
-			
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 			panel.add(grid[i], c);
 		}
 			
-<<<<<<< HEAD
+
 			System.out.println(w1.getText());			//debugging
 			if(Integer.parseInt(w1.getText()) == 10) {	//
 				System.out.println("EEEEE");			//
@@ -262,15 +251,14 @@ public class Simulation {
 			else {										//
 				System.out.println("BBB");				//
 			}											//debugging
-=======
-		 
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 		
 		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-<<<<<<< HEAD
+				
+				int Space;		//For storing the random int for the space an animal is placed
+				
 				if(Integer.parseInt(w1.getText()) > 0) {		
 					wolves.WolAlter1(Integer.parseInt(w1.getText()));	//inserts them into the wolves class
 					//wolves.makeWolves(wolves.WolSend1());
@@ -283,37 +271,13 @@ public class Simulation {
 					System.out.println(wolves.WolSend2());
 				}else {
 					System.out.println("try again2");
-=======
-				
-				int Space;		//For storing the random int for the space an animal is placed
-				
-				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
-					grid[i].setText("g");			
-					grassNum[i] = 1;				//Stores a 1 for each grass spot
-					
-					
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 				}
-<<<<<<< HEAD
 				if(Integer.parseInt(w3.getText())	> 0) {
 					wolves.WolAlter3(Integer.parseInt(w3.getText()));
 					System.out.println(wolves.WolSend3());
 				}else {
 					System.out.println("try again3");
-=======
-				
-				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
-					Space = r.nextInt(99-0+1)+0;
-					if(grid[Space].getText().equals("W")) {		
-						i = i-1;
-					}else {
-						grid[Space].setText("W");
-					}
-					
-					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 				}
-<<<<<<< HEAD
 				if(Integer.parseInt(w4.getText())	> 0) {
 					wolves.WolAlter4(Integer.parseInt(w4.getText()));
 					System.out.println(wolves.WolSend4());
@@ -331,23 +295,35 @@ public class Simulation {
 					System.out.println(wolves.WolSend6());
 				}else {
 					System.out.println("try again6");
-=======
-				
-				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
+				}
+				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
 					Space = r.nextInt(99-0+1)+0;
-					System.out.println(i);
-					if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
+					if(grid[Space].getText().equals("W")) {		
 						i = i-1;
 					}else {
-						grid[Space].setText("R");
-					}
-					
-					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
+						grid[Space].setText("W");
+					}	
+					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 				}
 					
+				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
+					grid[i].setText("g");			
+					grassNum[i] = 1;				//Stores a 1 for each grass spot
+					for(int o = 0; i<rabbits.RabSend1(); o++) {		//Randomly places R for each rabbit
+						Space = r.nextInt(99-0+1)+0;
+						System.out.println(o);
+						if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
+							i = i-1;
+						}else {
+							grid[Space].setText("R");
+						}
+						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
+									
+					}
+				}
 			}
 		});
+			
 		c.gridx = 3;
 		c.gridy = 0;
 		panel.add(start, c);
@@ -480,14 +456,8 @@ public class Simulation {
 			
 		}
 		
-<<<<<<< HEAD
-		public int RabAlter1(int placehold) {
-			RabNum1 = placehold;              //for changing the values, also returns them
-			return(RabNum1);
-=======
 		public void RabAlter1(int placehold) {
 			RabNum1 = placehold;              //for changing the values
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 		}
 		public void RabAlter2(int placehold) {
 			RabMeta2 = placehold;
@@ -505,11 +475,7 @@ public class Simulation {
 			RabChance6 = placehold;
 		}
 		public int RabSend1() {
-<<<<<<< HEAD
-			return(RabNum1);		//just returns the values
-=======
-			return(RabNum1);              //for returning the values
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
+			return(RabNum1);
 		}
 		public int RabSend2() {
 			return(RabMeta2);
