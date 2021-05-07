@@ -36,7 +36,6 @@ public class Simulation {
 		frame.setSize(850, 850);
 		frame.setLocationRelativeTo(null);
 		
-		
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
@@ -49,6 +48,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 1;
 		panel.add(w1, c);
+		w1.setText("10");
 		
 		l1 = new JLabel("# of wolves at start ");
 		c.gridx = 1;
@@ -59,6 +59,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 2;
 		panel.add(w2, c);
+		w2.setText("10");
 		
 		l2 = new JLabel("Metabolism rate ");
 		c.gridx = 1;
@@ -69,16 +70,18 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 3;
 		panel.add(w3, c);
+		w3.setText("50");
 		
 		l3 = new JLabel("Amount of food at start ");
 		c.gridx = 1;
 		c.gridy = 3;
-		panel.add(l3, c);
+		panel.add(l3, c);	
 		
 		w4 = new JTextField(10);
 		c.gridx = 2;
 		c.gridy = 4;
 		panel.add(w4, c);
+		w4.setText("150");
 		
 		l4 = new JLabel("Max food allowed ");
 		c.gridx = 1;
@@ -89,6 +92,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 5;
 		panel.add(w5, c);
+		w5.setText("50");
 		
 		l5 = new JLabel("Max age ");
 		c.gridx = 1;
@@ -99,6 +103,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 6;
 		panel.add(w6, c);
+		w6.setText("75");
 		
 		l6 = new JLabel("Reproduction probability ");
 		c.gridx = 1;
@@ -231,12 +236,17 @@ public class Simulation {
 				c.gridx = i - 86;
 				c.gridy = 11;
 			}
-			
-			
 			panel.add(grid[i], c);
 		}
 			
-		 
+
+			System.out.println(w1.getText());			//debugging
+			if(Integer.parseInt(w1.getText()) == 10) {	//
+				System.out.println("EEEEE");			//
+			}											//
+			else {										//
+				System.out.println("BBB");				//
+			}											//debugging
 		
 		start.addActionListener(new ActionListener() {
 
@@ -251,11 +261,46 @@ public class Simulation {
 				
 				int Space;		//For storing the random int for the space an animal is placed
 				
+				if(Integer.parseInt(w1.getText()) > 0) {		
+					wolves.WolAlter1(Integer.parseInt(w1.getText()));	//inserts them into the wolves class
+					//wolves.makeWolves(wolves.WolSend1());
+					System.out.println(wolves.WolSend1());
+				}else {													//also checks for no empty text boxes
+					System.out.println("try again1");
+				}											 			//calls method to create wolves
+				if(Integer.parseInt(w2.getText())	> 0) {
+					wolves.WolAlter2(Integer.parseInt(w2.getText()));
+					System.out.println(wolves.WolSend2());
+				}else {
+					System.out.println("try again2");
+				}
+				if(Integer.parseInt(w3.getText())	> 0) {
+					wolves.WolAlter3(Integer.parseInt(w3.getText()));
+					System.out.println(wolves.WolSend3());
+				}else {
+					System.out.println("try again3");
+				}
+				if(Integer.parseInt(w4.getText())	> 0) {
+					wolves.WolAlter4(Integer.parseInt(w4.getText()));
+					System.out.println(wolves.WolSend4());
+				}else {
+					System.out.println("try again4");
+				}
+				if(Integer.parseInt(w5.getText())	> 0) {
+					wolves.WolAlter5(Integer.parseInt(w5.getText()));
+					System.out.println(wolves.WolSend5());
+				}else {
+					System.out.println("try again5");
+				}
+				if(Integer.parseInt(w6.getText())	> 0) {
+					wolves.WolAlter6(Integer.parseInt(w6.getText()));
+					System.out.println(wolves.WolSend6());
+				}else {
+					System.out.println("try again6");
+				}
+				
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
 					grid[i].setText("g");			
-					grassNum[i] = 1;				//Stores a 1 for each grass spot
-					
-					
 				}
 				
 				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
@@ -267,8 +312,7 @@ public class Simulation {
 						wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 					}
 					
-					
-				}
+				}	
 				
 				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
 					Space = r.nextInt(99-0+1)+0;
@@ -279,13 +323,14 @@ public class Simulation {
 						grid[Space].setText("R");
 						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
 					}
-					
-					
 
 				}
+			
 				
 			}
 		});
+		
+			
 		c.gridx = 3;
 		c.gridy = 0;
 		panel.add(start, c);
@@ -320,8 +365,8 @@ public class Simulation {
 		
 		frame.setVisible(true);
 		
+	
 	}
-
 
 	public static void main(String[] args) {
 
@@ -331,13 +376,19 @@ public class Simulation {
 	
 	public static class Wolves {
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
-		public Wolves() {																		//numbered to keep them in mind more easily
+		private static Object wolvs[];
+		public Wolves() {														//numbered to keep them in mind more easily
 			WolNum1 = 10;	//initial values
 			WolMeta2 = 10;	//just placeholder
 			WolFS3 = 50;
 			WolFM4 = 150;
 			WolOld5 = 50;
 			WolChance6 = 75;
+		}
+		public void makeWolves(int n) {
+			for (int i = 0; i < n; ++i) {
+				wolvs[i] = new Wolves();
+			}
 		}
 		public int WolAlter1(int placehold) { 
 			WolNum1 = placehold;				//they all change the initial values
@@ -359,8 +410,8 @@ public class Simulation {
 			WolOld5 = placehold;
 			return(WolOld5);
 		}
-		public int WolAlter6(int placehold) {
-			int a;
+		public double WolAlter6(int placehold) {
+			double a;
 			WolChance6 = placehold;
 			a = WolChance6/100;
 			return(a);
@@ -380,17 +431,19 @@ public class Simulation {
 		public int WolSend5() {
 			return(WolOld5);
 		}
-		public int WolSend6() {
-			int a;
+		public double WolSend6() {
+			double a;
 			a = WolChance6/100;
 			return(a);
 		}
+		
 	}
 	
 	public static class Rabbits {
 		
 		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
 		public int[] food = new int[100], age = new int[100], FooMiss = new int[100];
+		Random r = new Random();
 		public Rabbits () {
 			
 			
@@ -440,7 +493,7 @@ public class Simulation {
 			RabChance6 = placehold;
 		}
 		public int RabSend1() {
-			return(RabNum1);              //for returning the values
+			return(RabNum1);
 		}
 		public int RabSend2() {
 			return(RabMeta2);
@@ -480,6 +533,8 @@ public class Simulation {
 							
 							food[i] = food[i] + 2;
 							
+							FooMiss[i] = 0; // marking down that it has ate, don't want them starving while eating
+							
 						}
 						
 					}else {
@@ -504,7 +559,7 @@ public class Simulation {
 			
 		}
 		
-		public void RabMove() {
+		public int[] RabMove(int placehold[], int placehold2[]) {
 			
 			// evertime new day is pressed all rabbits must move to a random spot either to the north, east, south or west of where they just were. 
 			// which direction they go is random but with higher chances to go away from wolves.
@@ -514,10 +569,147 @@ public class Simulation {
 			for(int i = 0; i < 100; i++) {
 				
 				
-				
+				if(placehold[i] == 1) { // making sure there's a rabbit to move
+					
+					if(placehold2[i] + 1 == 1|| placehold2[i] + 2 == 1) { // checking if theres a wolf to the right
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+						if(moveChan == 1 || moveChan == 2) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}
+						
+						
+					}else if(placehold2[i] - 1 == 1|| placehold2[i] - 2 == 1) { // checking if theres a wolf to the left
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+                        if(moveChan == 1 || moveChan == 2) { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}
+						
+					}else if(placehold2[i] + 10 == 1|| placehold2[i] + 20 == 1) { // checking if theres a wolf below
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+                        if(moveChan == 1 || moveChan == 2) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}
+						
+					}else if(placehold2[i] - 10 == 1|| placehold2[i] - 20 == 1) { // checking if theres a wolf above
+						
+						moveChan = r.nextInt(7-1+1)+0;
+						
+                        if(moveChan == 1 || moveChan == 2) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}else if(moveChan == 3|| moveChan == 4) { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}else if(moveChan == 5|| moveChan == 6) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}
+						
+					}else { // if theres no wolf
+						
+						moveChan = r.nextInt(4-1+1)+0;
+						
+                        if(moveChan == 1) { // move left
+							
+							placehold[i] = 0;
+							placehold[i - 1] = 1;
+							
+						}else if(moveChan == 2) { // move up
+							
+							placehold[i] = 0;
+							placehold[i - 10] = 1;
+							
+						}else if(moveChan == 3) { // move down
+							
+							placehold[i] = 0;
+							placehold[i + 10] = 1;
+							
+						}else { // move right
+							
+							placehold[i] = 0;
+							placehold[i + 1] = 1;
+							
+						}
+						
+					}
+					
+				}
 				
 				
 			}
+			
+			return placehold;
 			
 		}
 		
@@ -560,7 +752,12 @@ public class Simulation {
 			}
 			
 		}
-		
-	}
 	
+	}
+
 }
+		
+	
+	
+
+
