@@ -296,6 +296,13 @@ public class Simulation {
 				}else {
 					System.out.println("try again6");
 				}
+				
+				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
+					grid[i].setText("g");			
+					grassNum[i] = 1;				//Stores a 1 for each grass spot
+					
+					}
+				
 				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
 					Space = r.nextInt(99-0+1)+0;
 					if(grid[Space].getText().equals("W")) {		
@@ -306,20 +313,16 @@ public class Simulation {
 					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 				}
 					
-				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
-					grid[i].setText("g");			
-					grassNum[i] = 1;				//Stores a 1 for each grass spot
-					for(int o = 0; i<rabbits.RabSend1(); o++) {		//Randomly places R for each rabbit
-						Space = r.nextInt(99-0+1)+0;
-						System.out.println(o);
-						if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
-							i = i-1;
-						}else {
-							grid[Space].setText("R");
-						}
-						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
-									
+				
+				for(int o = 0; o<rabbits.RabSend1(); o++) {		//Randomly places R for each rabbit
+					Space = r.nextInt(99-0+1)+0;
+					if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
+						o = o-1;
+					}else {
+						grid[Space].setText("R");
 					}
+					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
+								
 				}
 			}
 		});
