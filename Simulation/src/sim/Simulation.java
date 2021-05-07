@@ -18,7 +18,7 @@ public class Simulation {
 
 	Random r = new Random();
 
-
+		
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
@@ -243,6 +243,12 @@ public class Simulation {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
+				for(int i = 0; i<grid.length; i++) {
+					grassNum[i] = 1;
+					wolfNum[i] = 0;
+					rabbitNum[i] = 0;
+				}
+				
 				int Space;		//For storing the random int for the space an animal is placed
 				
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
@@ -258,21 +264,24 @@ public class Simulation {
 						i = i-1;
 					}else {
 						grid[Space].setText("W");
+						wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 					}
 					
-					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
+					
 				}
 				
 				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
 					Space = r.nextInt(99-0+1)+0;
-					System.out.println(i);
+					
 					if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
 						i = i-1;
 					}else {
 						grid[Space].setText("R");
+						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
 					}
 					
-					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
+					
+
 				}
 				
 			}
@@ -288,7 +297,17 @@ public class Simulation {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
+				int[] grassNum2 = rabbits.RabEat(rabbitNum, grassNum);
 				
+				for(int i = 0; i<grid.length; i++) {
+					
+					if (grid[i].equals("g")) {
+						if (grassNum2[i] == 0) {
+							grid[i].setText(" ");
+							}
+					}
+						
+				}
 			}
 			
 		});
@@ -441,7 +460,7 @@ public class Simulation {
 			return(b);
 		}
 		
-		public void RabEat(int placehold[], int placehold2[]) {
+		public int[] RabEat(int placehold[], int placehold2[]) {
 			
 			// everytime new day is pressed each rabbit needs to attempt to eat (random?)
 			
@@ -452,6 +471,10 @@ public class Simulation {
 				if(placehold[i] == 1) { // RABBIT PLACEHOLD CHECK
 					
 					if(placehold2[i] == 1) { // GRASS PLACEHOLD CHECK
+						
+						placehold2[i] = 0;
+						
+						
 						
 						if(food[i] + 2 < RabFM4) {  // check to see if eating will put them over the limit
 							
@@ -476,6 +499,8 @@ public class Simulation {
 				}
 				
 			}
+			
+			return placehold2;
 			
 		}
 		
