@@ -309,11 +309,11 @@ public class Simulation {
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
 					grid[i].setText("g");			
 					grassNum[i] = 1;				//Stores a 1 for each grass spot
-					for(int o = 0; i<rabbits.RabSend1(); o++) {		//Randomly places R for each rabbit
+					for(int o = 0; o<rabbits.RabSend1(); o++) {		//Randomly places R for each rabbit
 						Space = r.nextInt(99-0+1)+0;
 						System.out.println(o);
 						if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
-							i = i-1;
+							o = o-1;
 						}else {
 							grid[Space].setText("R");
 						}
@@ -359,6 +359,7 @@ public class Simulation {
 	
 	public static class Wolves {
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
+		public int[] Wfood = new int[100], Wage = new int[100], WFooMiss = new int[100];
 		private static Object wolvs[];
 		public Wolves() {														//numbered to keep them in mind more easily
 			WolNum1 = 10;	//initial values
@@ -367,6 +368,22 @@ public class Simulation {
 			WolFM4 = 150;
 			WolOld5 = 50;
 			WolChance6 = 75;
+			
+			for(int i = 0; i < Wfood.length; i++) {
+				
+				Wfood[i] = WolFS3;
+				
+			}
+			for(int i = 0; i < Wage.length; i++) {
+				
+				Wage[i] = 0;
+				
+			}
+            for(int i = 0; i < WFooMiss.length; i++) {
+				
+				WFooMiss[i] = 0;
+				
+			}
 		}
 		public void makeWolves(int n) {
 			for (int i = 0; i < n; ++i) {
