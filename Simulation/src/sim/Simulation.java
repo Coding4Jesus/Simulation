@@ -301,18 +301,24 @@ public class Simulation {
 				
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
 					grid[i].setText("g");			
+					grassNum[i] = 1;				//Stores a 1 for each grass spot
 				}
+
 				
 				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
 					Space = r.nextInt(99-0+1)+0;
 					if(grid[Space].getText().equals("W")) {		
 						i = i-1;
 					}else {
+
 						grid[Space].setText("W");
 						wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
-					}
+						grid[Space].setText("W");
+					}	
+					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
+				}
 					
-				}	
+	
 				
 				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
 					Space = r.nextInt(99-0+1)+0;
@@ -324,13 +330,17 @@ public class Simulation {
 						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
 					}
 
-				}
+
+					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
+								
+
+					}
+		
+				}	
 			
-				
-			}
 		});
 		
-			
+		
 		c.gridx = 3;
 		c.gridy = 0;
 		panel.add(start, c);
@@ -565,38 +575,40 @@ public class Simulation {
 			// which direction they go is random but with higher chances to go away from wolves.
 			
 			int moveChan = 0; // for randomizing where the rabbits will go
+			int RLCheck = 0; // checks if they are on the left or right edge
 			
 			for(int i = 0; i < 100; i++) {
 				
+				RLCheck = i % 10;
 				
 				if(placehold[i] == 1) { // making sure there's a rabbit to move
 					
+					
 					if(placehold2[i] + 1 == 1|| placehold2[i] + 2 == 1) { // checking if theres a wolf to the right
 						
-						moveChan = r.nextInt(7-1+1)+0;
 						
-						if(moveChan == 1 || moveChan == 2) { // move left
-							
-							placehold[i] = 0;
-							placehold[i - 1] = 1;
-							
-						}else if(moveChan == 3|| moveChan == 4) { // move up
-							
-							placehold[i] = 0;
-							placehold[i - 10] = 1;
-							
-						}else if(moveChan == 5|| moveChan == 6) { // move down
-							
-							placehold[i] = 0;
-							placehold[i + 10] = 1;
-							
-						}else { // move right
-							
-							placehold[i] = 0;
-							placehold[i + 1] = 1;
-							
-						}
-						
+								if(moveChan == 1 || moveChan == 2) { // move left
+									
+									placehold[i] = 0;
+									placehold[i - 1] = 1;
+									
+								}else if(moveChan == 3|| moveChan == 4) { // move up
+									
+									placehold[i] = 0;
+									placehold[i - 10] = 1;
+									
+								}else if(moveChan == 5|| moveChan == 6) { // move down
+									
+									placehold[i] = 0;
+									placehold[i + 10] = 1;
+									
+								}else { // move right
+									
+									placehold[i] = 0;
+									placehold[i + 1] = 1;
+									
+								}
+							}
 						
 					}else if(placehold2[i] - 1 == 1|| placehold2[i] - 2 == 1) { // checking if theres a wolf to the left
 						
@@ -707,7 +719,7 @@ public class Simulation {
 				}
 				
 				
-			}
+			
 			
 			return placehold;
 			
