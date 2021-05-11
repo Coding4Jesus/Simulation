@@ -717,19 +717,484 @@ public class Simulation {
 			
 		}
 		
-		public void RabRepro() {
+		public int[] RabRepro(int[] placehold, int[] placehold2) {
 			
 			// everytime a new day is pressed rabbits have a chance to reproduce if: 
 			// there are two rabbits adjacent to eachother, they have eaten atleast half the max food,
 			//  there are no wolves nearby and they are atleast half the max age
 			
-			int wahooChan = 0; // for storing repro chance during check
+			int wahooChan = 0; // for storing repro data during check
 			
 			for(int i = 0; i < 100; i++) {
 				
-				
-				
+				if(placehold[i] + 1 == 1) { // check if theres another rabbit to the right
+					
+					if(placehold2[i] + 2 == 1 || placehold2[i] + 3 == 1) { // check if theres a wolf to the right
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] + 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i + 3] = 1; // place new rabbit
+								age[i + 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 1 == 0) {
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 1 == 1 || placehold2[i] - 2 == 1) { // check if theres a wolf to the left
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] + 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i + 3] = 1; // place new rabbit
+								age[i + 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 1 == 0) {
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 10 == 1 || placehold2[i] - 20 == 1) { // check if theres a wolf to the above
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] + 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i + 3] = 1; // place new rabbit
+								age[i + 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 1 == 0) {
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] + 10 == 1 || placehold2[i] + 20 == 1) { // check if theres a wolf to the down
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] + 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i + 3] = 1; // place new rabbit
+								age[i + 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 1 == 0) {
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}
+					
+				}else if(placehold[i] - 1 == 1) { // check if theres another rabbit to the left
+					
+                    if(placehold2[i] + 1 == 1 || placehold2[i] + 2 == 1) { // check if theres a wolf to the right
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 3] = 1; // place new rabbit
+								age[i - 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 2 == 1 || placehold2[i] - 3 == 1) { // check if theres a wolf to the left
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 3] = 1; // place new rabbit
+								age[i - 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 10 == 1 || placehold2[i] - 20 == 1) { // check if theres a wolf to the above
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 3] = 1; // place new rabbit
+								age[i - 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] + 10 == 1 || placehold2[i] + 20 == 1) { // check if theres a wolf to the down
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 1 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 3 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 3] = 1; // place new rabbit
+								age[i - 3] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}
+					
+				}else if(placehold[i] + 10 == 1) { // check if theres another rabbit above
+					
+                    if(placehold2[i] + 1 == 1 || placehold2[i] + 2 == 1) { // check if theres a wolf to the right
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 20 == 0) {
+								
+								placehold[i - 20] = 1; // place new rabbit
+								age[i - 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 1 == 1 || placehold2[i] - 2 == 1) { // check if theres a wolf to the left
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 20 == 0) {
+								
+								placehold[i - 20] = 1; // place new rabbit
+								age[i - 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 20 == 1 || placehold2[i] - 30 == 1) { // check if theres a wolf to the above
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 20 == 0) {
+								
+								placehold[i - 20] = 1; // place new rabbit
+								age[i - 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] + 10 == 1 || placehold2[i] + 20 == 1) { // check if theres a wolf to the down
+						
+						if(food[i] > RabFM4 / 2 && food[i] + 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 10 == 0) {
+								
+								placehold[i + 10] = 1; // place new rabbit
+								age[i + 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 20 == 0) {
+								
+								placehold[i - 20] = 1; // place new rabbit
+								age[i - 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}
+					
+				}else if(placehold[i] - 10 == 1) { // check if theres another rabbit below
+					
+                    if(placehold2[i] + 1 == 1 || placehold2[i] + 2 == 1) { // check if theres a wolf to the right
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 20 == 0) {
+								
+								placehold[i + 20] = 1; // place new rabbit
+								age[i + 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 1 == 1 || placehold2[i] - 2 == 1) { // check if theres a wolf to the left
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 20 == 0) {
+								
+								placehold[i + 20] = 1; // place new rabbit
+								age[i + 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 10 == 1 || placehold2[i] - 20 == 1) { // check if theres a wolf to the above
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 20 == 0) {
+								
+								placehold[i + 20] = 1; // place new rabbit
+								age[i + 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] + 20 == 1 || placehold2[i] + 30 == 1) { // check if theres a wolf to the down
+						
+						if(food[i] > RabFM4 / 2 && food[i] - 10 > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+							
+							if(placehold[i] - 1 == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+								
+								placehold[i - 1] = 1; // place new rabbit
+								age[i - 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 1 == 0) {
+								
+								placehold[i + 1] = 1; // place new rabbit
+								age[i + 1] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] - 10 == 0) {
+								
+								placehold[i - 10] = 1; // place new rabbit
+								age[i - 10] = 1; // make the new rabbit actually show up
+								
+							}else if(placehold[i] + 20 == 0) {
+								
+								placehold[i + 20] = 1; // place new rabbit
+								age[i + 20] = 1; // make the new rabbit actually show up
+								
+							}
+							
+						}
+						
+					}
+					
+				}
 			}
+			
+			return placehold;
 			
 		}
 		
