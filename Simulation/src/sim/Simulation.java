@@ -382,7 +382,8 @@ public class Simulation {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				rabbits.RabAge();
-				rabbits.RabMove(rabbitNum[],wolNum[]);
+				rabbits.RabMove(rabbitNum,wolfNum);
+				rabbits.RabEat(rabbitNum,grassNum);
 			}
 			
 		});
@@ -405,10 +406,13 @@ public class Simulation {
 	}
 	
 	public static class Wolves {
+		
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
 		public int[] Wfood = new int[100], Wage = new int[100], WFooMiss = new int[100];
 		private static Object wolvs[];
 		public Wolves() {														//numbered to keep them in mind more easily
+			
+			
 			WolNum1 = 10;	//initial values
 			WolMeta2 = 10;	//just placeholder
 			WolFS3 = 50;
