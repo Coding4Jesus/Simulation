@@ -384,6 +384,7 @@ public class Simulation {
 				rabbits.RabAge();
 				rabbits.RabMove(rabbitNum,wolfNum);
 				rabbits.RabEat(rabbitNum,grassNum);
+				rabbits.RabRepro(rabbitNum, wolfNum);
 			}
 			
 		});
