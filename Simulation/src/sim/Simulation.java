@@ -124,7 +124,8 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 9;
 		panel.add(r1, c);
-		
+		r1.setText("10");
+
 		l7 = new JLabel("# of rabbits at start ");
 		c.gridx = 1;
 		c.gridy = 9;
@@ -134,7 +135,8 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 10;
 		panel.add(r2, c);
-		
+		r2.setText("10");
+
 		l8 = new JLabel("Metabolism rate ");
 		c.gridx = 1;
 		c.gridy = 10;
@@ -143,7 +145,8 @@ public class Simulation {
 		r3 = new JTextField(10);
 		c.gridx = 2;
 		c.gridy = 11;
-		panel.add(r3, c);
+		panel.add(r3, c);		
+		r3.setText("50");
 		
 		l9 = new JLabel("Amount of food at start ");
 		c.gridx = 1;
@@ -154,6 +157,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 12;
 		panel.add(r4, c);
+		r4.setText("150");
 		
 		l10 = new JLabel("Max food allowed ");
 		c.gridx = 1;
@@ -164,6 +168,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 13;
 		panel.add(r5, c);
+		r5.setText("50");
 		
 		l11 = new JLabel("Max age ");
 		c.gridx = 1;
@@ -174,6 +179,7 @@ public class Simulation {
 		c.gridx = 2;
 		c.gridy = 14;
 		panel.add(r6, c);
+		r6.setText("75");
 		
 		l12 = new JLabel("Reproduction probability ");
 		c.gridx = 1;
@@ -266,7 +272,7 @@ public class Simulation {
 					//wolves.makeWolves(wolves.WolSend1());
 					System.out.println(wolves.WolSend1());
 				}else {													//also checks for no empty text boxes
-					System.out.println("try again1");
+					System.out.println("try again1");					//all printlns are just for debugging
 				}											 			//calls method to create wolves
 				if(Integer.parseInt(w2.getText())	> 0) {
 					wolves.WolAlter2(Integer.parseInt(w2.getText()));
@@ -299,26 +305,63 @@ public class Simulation {
 					System.out.println("try again6");
 				}
 				
+				if(Integer.parseInt(r1.getText()) > 0) {		
+					rabbits.RabAlter1(Integer.parseInt(r1.getText()));	//inserts them into the wolves class
+					//wolves.makeWolves(wolves.WolSend1());
+					System.out.println(rabbits.RabSend1());
+				}else {													//also checks for no empty text boxes
+					System.out.println("rtry again1");					//all printlns are just for debugging
+				}											 			//calls method to create wolves
+				if(Integer.parseInt(r2.getText()) > 0) {
+					rabbits.RabAlter2(Integer.parseInt(r2.getText()));
+					System.out.println(rabbits.RabSend2());
+				}else {
+					System.out.println("rtry again2");
+				}
+				if(Integer.parseInt(r3.getText()) > 0) {
+					rabbits.RabAlter3(Integer.parseInt(r3.getText()));
+					System.out.println(rabbits.RabSend3());
+				}else {
+					System.out.println("rtry again3");
+				}
+				if(Integer.parseInt(r4.getText()) > 0) {
+					rabbits.RabAlter4(Integer.parseInt(r4.getText()));
+					System.out.println(rabbits.RabSend4());
+				}else {
+					System.out.println("rtry again4");
+				}
+				if(Integer.parseInt(r5.getText()) > 0) {
+					rabbits.RabAlter5(Integer.parseInt(r5.getText()));
+					System.out.println(rabbits.RabSend5());
+				}else {
+					System.out.println("rtry again5");
+				}
+				if(Integer.parseInt(r6.getText()) > 0) {
+					rabbits.RabAlter6(Integer.parseInt(r6.getText()));
+					System.out.println(rabbits.RabSend6());
+				}else {
+					System.out.println("rtry again6");
+				}
+				
+				
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
 					grid[i].setText("g");			
 					grassNum[i] = 1;				//Stores a 1 for each grass spot
 				}
 
-				
 				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
 					Space = r.nextInt(99-0+1)+0;
 					if(grid[Space].getText().equals("W")) {		
 						i = i-1;
 					}else {
-
 						grid[Space].setText("W");
 						wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 						grid[Space].setText("W");
+						wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 					}	
-					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 				}
 					
-	
+
 				
 				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
 					Space = r.nextInt(99-0+1)+0;
@@ -328,15 +371,12 @@ public class Simulation {
 					}else {
 						grid[Space].setText("R");
 						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
+						grid[Space].setText("R");
+						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
 					}
-
-
-					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
-								
-
-					}
+				}
 		
-				}	
+			}	
 			
 		});
 		
@@ -351,6 +391,7 @@ public class Simulation {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+
 				
 				int[] grassNum2 = rabbits.RabEat(rabbitNum, grassNum);
 				
@@ -363,6 +404,10 @@ public class Simulation {
 					}
 						
 				}
+				rabbits.RabAge();
+				rabbits.RabMove(rabbitNum,wolfNum);
+				rabbits.RabEat(rabbitNum,grassNum);
+				rabbits.RabRepro(rabbitNum, wolfNum);
 			}
 			
 		});
@@ -385,15 +430,35 @@ public class Simulation {
 	}
 	
 	public static class Wolves {
+		
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
+		public int[] Wfood = new int[100], Wage = new int[100], WFooMiss = new int[100];
 		private static Object wolvs[];
 		public Wolves() {														//numbered to keep them in mind more easily
+			
+			
 			WolNum1 = 10;	//initial values
 			WolMeta2 = 10;	//just placeholder
 			WolFS3 = 50;
 			WolFM4 = 150;
 			WolOld5 = 50;
 			WolChance6 = 75;
+			
+			for(int i = 0; i < Wfood.length; i++) {
+				
+				Wfood[i] = WolFS3;
+				
+			}
+			for(int i = 0; i < Wage.length; i++) {
+				
+				Wage[i] = 0;
+				
+			}
+            for(int i = 0; i < WFooMiss.length; i++) {
+				
+				WFooMiss[i] = 0;
+				
+			}
 		}
 		public void makeWolves(int n) {
 			for (int i = 0; i < n; ++i) {
