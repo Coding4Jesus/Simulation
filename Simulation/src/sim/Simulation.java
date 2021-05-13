@@ -651,13 +651,13 @@ public class Simulation {
 					
 					if(placehold2[i] + 1 == 1|| placehold2[i] + 2 == 1) { // checking if theres a wolf to the right
 					
-						for(int o = 0; o<1; o++) {
+						for(int o = 0; o<1; o++) {  //for looping again if it needs to
 						
 							moveChan = r.nextInt(7-1+1)+0;
 						
 							if(moveChan == 1 || moveChan == 2) { // move left
 									
-								if (RLCheck == 0) {
+								if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -666,7 +666,7 @@ public class Simulation {
 									
 							}else if(moveChan == 3|| moveChan == 4) { // move up
 									
-								if (i < 10 ) {
+								if (i < 10 ) {  //Checks if its on the top edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -675,7 +675,7 @@ public class Simulation {
 									
 							}else if(moveChan == 5|| moveChan == 6) { // move down
 								
-								if (i > 89) {
+								if (i > 89) {  //Checks if its on the bottom edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -684,7 +684,7 @@ public class Simulation {
 									
 							}else { // move right
 									
-								if (RLCheck == 9) {
+								if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -703,7 +703,7 @@ public class Simulation {
 							
 	                        if(moveChan == 1 || moveChan == 2) { // move right
 								
-	                        	if (RLCheck == 9) {
+	                        	if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -712,7 +712,7 @@ public class Simulation {
 	                        	
 							}else if(moveChan == 3|| moveChan == 4) { // move up
 								
-								if (i < 10) {
+								if (i < 10) {  //Checks if its on the top edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -721,7 +721,7 @@ public class Simulation {
 								
 							}else if(moveChan == 5|| moveChan == 6) { // move down
 								
-								if (i > 89) {
+								if (i > 89) {  //Checks if its on the bottom edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -730,7 +730,7 @@ public class Simulation {
 								
 							}else { // move left
 								
-								if (RLCheck == 0) {
+								if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -747,7 +747,7 @@ public class Simulation {
 							
 	                        if(moveChan == 1 || moveChan == 2) { // move left
 								
-	                        	if (RLCheck == 0) {
+	                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -756,7 +756,7 @@ public class Simulation {
 								
 							}else if(moveChan == 3|| moveChan == 4) { // move right
 								
-								if (RLCheck == 9) {
+								if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -765,7 +765,7 @@ public class Simulation {
 								
 							}else if(moveChan == 5|| moveChan == 6) { // move up
 								
-								if (RLCheck == 0) {
+								if (RLCheck == 0) {  //Checks if its on the top edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -774,7 +774,7 @@ public class Simulation {
 								
 							}else { // move down
 								
-								if (RLCheck == 0) {
+								if (RLCheck == 0) {  //Checks if its on the bottom edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -791,7 +791,7 @@ public class Simulation {
 							
 	                        if(moveChan == 1 || moveChan == 2) { // move left
 								
-	                        	if (RLCheck == 0) {
+	                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -800,7 +800,7 @@ public class Simulation {
 								
 							}else if(moveChan == 3|| moveChan == 4) { // move right
 								
-								if (RLCheck == 9) {
+								if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -809,7 +809,7 @@ public class Simulation {
 								
 							}else if(moveChan == 5|| moveChan == 6) { // move down
 								
-								if (i > 89) {
+								if (i > 89) {  //Checks if its on the bottom edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -818,7 +818,7 @@ public class Simulation {
 								
 							}else { // move up
 								
-								if (i < 10) {
+								if (i < 10) {  //Checks if its on the top edge, if so try again
 									o = o - 1;
 								}else {
 								placehold[i] = 0;
@@ -835,7 +835,7 @@ public class Simulation {
 							
 	                        if(moveChan == 1) { // move left
 								
-	                        	if (RLCheck == 0) {
+	                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -844,7 +844,7 @@ public class Simulation {
 								
 							}else if(moveChan == 2) { // move up
 								
-								if (i < 10) {
+								if (i < 10) {  //Checks if its on the top edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -853,7 +853,7 @@ public class Simulation {
 								
 							}else if(moveChan == 3) { // move down
 								
-								if (i > 89) {
+								if (i > 89) {  //Checks if its on the bottom edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
@@ -862,7 +862,7 @@ public class Simulation {
 								
 							}else { // move right
 								
-								if (RLCheck == 9) {
+								if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
 									o = o - 1;
 								}else {
 									placehold[i] = 0;
