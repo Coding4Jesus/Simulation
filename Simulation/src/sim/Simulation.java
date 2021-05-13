@@ -585,30 +585,39 @@ public class Simulation {
 					
 					
 					if(placehold2[i] + 1 == 1|| placehold2[i] + 2 == 1) { // checking if theres a wolf to the right
+					
+						for(int o = 0; o<1; o++) {
 						
+							moveChan = r.nextInt(7-1+1)+0;
 						
-								if(moveChan == 1 || moveChan == 2) { // move left
+							if(moveChan == 1 || moveChan == 2) { // move left
 									
+								if (RLCheck == 0) {
+									o = o - 1;
+								}else {
 									placehold[i] = 0;
 									placehold[i - 1] = 1;
+								}
 									
-								}else if(moveChan == 3|| moveChan == 4) { // move up
+							}else if(moveChan == 3|| moveChan == 4) { // move up
 									
 									placehold[i] = 0;
 									placehold[i - 10] = 1;
 									
-								}else if(moveChan == 5|| moveChan == 6) { // move down
+							}else if(moveChan == 5|| moveChan == 6) { // move down
 									
 									placehold[i] = 0;
 									placehold[i + 10] = 1;
 									
-								}else { // move right
+							}else { // move right
 									
 									placehold[i] = 0;
 									placehold[i + 1] = 1;
 									
-								}
 							}
+							
+						}
+					}
 						
 					}else if(placehold2[i] - 1 == 1|| placehold2[i] - 2 == 1) { // checking if theres a wolf to the left
 						
