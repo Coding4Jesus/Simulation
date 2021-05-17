@@ -23,8 +23,8 @@ public class Simulation {
 	private JPanel panel;
 	private JButton[] grid;
 	private JButton start, nextDay;
-	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, space;
-	private String Grass, Rabbit, Wolf;
+	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, date, space;
+	private String Grass, Rabbit, Wolf, Day;
 	private JTextField w1, w2, w3, w4, w5, w6, r1, r2, r3, r4, r5, r6;
 	
 	public Simulation() {
@@ -42,6 +42,12 @@ public class Simulation {
 		
 		panel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		
+		Day = "0";
+		date = new JLabel("DAY: "+Day);
+		c.gridx = 8;
+		c.gridy = 0;
+		panel.add(date, c);
 		
 		wl = new JLabel("WOLF PARAMETERS");   //builds the labels and text boxes for changing the parameters
 		c.gridx = 1;
@@ -257,13 +263,21 @@ public class Simulation {
 			else {										//
 				System.out.println("BBB");				//
 			}											//debugging
-		
+			
 		start.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
 				int Space;		//For storing the random int for the space an animal is placed
+				
+				int day = Integer.parseInt(Day);	//day counter is set to 0 when parameters are placed
+				
+				day = 0;
+				
+				Day = (Integer.toString(day));
+				
+				date.setText("DAY: "+Day);
 				
 				if(Integer.parseInt(w1.getText()) > 0) {		
 					wolves.WolAlter1(Integer.parseInt(w1.getText()));	//inserts them into the wolves class
@@ -374,13 +388,30 @@ public class Simulation {
 		c.gridx = 3;
 		c.gridy = 0;
 		panel.add(start, c);
-		
+
 		nextDay = new JButton("Next Day");
 
 		nextDay.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+				
+				int day = Integer.parseInt(Day);
+				
+				day++;
+				
+				Day = (Integer.toString(day));
+				
+				date.setText("DAY: "+Day);
+				
+				if(day % 3 == 0) {							//this three could be replaced however often we want it to grow, could even be setting
+					for(int i = 0; i<grid.length; i++) {		//Sets non-rabbit or wolf button to uneaten grass
+						if (grid[i].getText() != "W" && grid[i].getText() != "R") {
+							grid[i].setText("g");			
+							grassNum[i] = 1;				//re-stores a 1 in the array for grass spots
+						}
+					}
+				}
 				rabbits.RabAge();
 				rabbits.RabMove(rabbitNum,wolfNum);
 				rabbits.RabEat(rabbitNum,grassNum);
@@ -405,7 +436,7 @@ public class Simulation {
 		Simulation run = new Simulation();
 		
 	}
-	
+
 	public static class Wolves {
 		
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
@@ -496,7 +527,7 @@ public class Simulation {
 		public static int RabNum1, RabMeta2, RabFS3, RabFM4, RabOld5, RabChance6, RabDeath7; //based on Jesus's code I should only need 6 variables, if not i can add some later
 		public int[] food = new int[100], age = new int[100], FooMiss = new int[100];
 		Random r = new Random();
-		public Rabbits () {
+		public Rabbits() {
 			
 			
 			RabNum1 = 15; //placeholder value, mostly for testing stuff.      the value that stores the number of rabbits
@@ -767,6 +798,7 @@ public class Simulation {
 				
 				if(age[i] != 0) {
 					
+					//put in metabolism into age
 					age[i]++;
 					
 					if(age[i]>RabOld5) {
