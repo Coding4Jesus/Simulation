@@ -361,7 +361,9 @@ public class Simulation {
 	}
 	
 	public static class Wolves {
-		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6;		//the 6 variables I think we'll need
+		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6, WolDeath7;		//the 6 variables I think we'll need
+		public int[] food = new int[100], age = new int[100], FooMiss = new int[100];
+		Random r = new Random();
 		private static Object wolvs[];
 		public Wolves() {														//numbered to keep them in mind more easily
 			WolNum1 = 10;	//initial values
@@ -370,6 +372,7 @@ public class Simulation {
 			WolFM4 = 150;
 			WolOld5 = 50;
 			WolChance6 = 75;
+			WolDeath7 = 0;
 		}
 		public void makeWolves(int n) {
 			for (int i = 0; i < n; ++i) {
@@ -421,6 +424,203 @@ public class Simulation {
 			double a;
 			a = WolChance6/100;
 			return(a);
+		}
+		
+		public void WolAge() {
+			
+			// evertime new day is pressed the age goes up by 1
+			
+			for(int i=0; i<age.length; i++) {
+				
+				if(age[i] != 0) {
+					
+					age[i]++;
+					
+					if(age[i]>WolOld5) {
+						
+						age[i] = 0;     // sets values back to default
+						food[i] = WolFS3;
+						WolDeath7++;   // adds a body to the kill count >:)
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		public void WolEat(int placehold[], int placehold2[]) {
+			
+			// everytime new day is pressed each rabbit needs to attempt to eat (random?)
+			
+			
+			
+			for(int i = 0; i < food.length; i++) {			
+					
+				if(placehold[i] == 1) { // WOLF PLACEHOLD CHECK
+					
+					if(placehold2[i] + 1 == 1) { // RABBIT PLACEHOLD CHECK RIGHT
+						
+						if(food[i] + 2 < WolFM4) {  // check to see if eating will put them over the limit
+							
+							food[i] = food[i] + 2;
+							
+							FooMiss[i] = 0; // marking down that it has ate, don't want them starving while eating
+							
+						}else {
+							
+							FooMiss[i]++;
+							
+							if(FooMiss[i] == 3) {
+								
+								age[i] = 0;     // sets values back to default
+								food[i] = WolFS3;
+								WolDeath7++;   // adds a body to the kill count >:)
+								
+							}
+							
+						}
+						
+					}else if(placehold2[i] - 1 == 1) { // RABBIT PLACEHOLD CHECK LEFT
+						
+						if(food[i] + 2 < WolFM4) {  // check to see if eating will put them over the limit
+							
+							food[i] = food[i] + 2;
+							
+							FooMiss[i] = 0; // marking down that it has ate, don't want them starving while eating
+							
+						}else {
+							
+							FooMiss[i]++;
+							
+							if(FooMiss[i] == 3) {
+								
+								age[i] = 0;     // sets values back to default
+								food[i] = WolFS3;
+								WolDeath7++;   // adds a body to the kill count >:)
+								
+							}
+							
+						}
+					}else if(placehold2[i] + 10 == 1){ // RABBIT PLACEHOLD CHECK DOWN
+						
+						if(food[i] + 2 < WolFM4) {  // check to see if eating will put them over the limit
+							
+							food[i] = food[i] + 2;
+							
+							FooMiss[i] = 0; // marking down that it has ate, don't want them starving while eating
+							
+						}else {
+							
+							FooMiss[i]++;
+							
+							if(FooMiss[i] == 3) {
+								
+								age[i] = 0;     // sets values back to default
+								food[i] = WolFS3;
+								WolDeath7++;   // adds a body to the kill count >:)
+								
+							}
+							
+						}
+					}else if(placehold2[i] - 10 == 1) { // RABBIT PLACEHOLD CHECK UP
+						
+						if(food[i] + 2 < WolFM4) {  // check to see if eating will put them over the limit
+							
+							food[i] = food[i] + 2;
+							
+							FooMiss[i] = 0; // marking down that it has ate, don't want them starving while eating
+							
+						}else {
+							
+							FooMiss[i]++;
+							
+							if(FooMiss[i] == 3) {
+								
+								age[i] = 0;     // sets values back to default
+								food[i] = WolFS3;
+								WolDeath7++;   // adds a body to the kill count >:)
+								
+							}
+							
+						}
+						
+					}else {
+						
+						FooMiss[i]++;
+						
+						if(FooMiss[i] == 3) {
+							
+							age[i] = 0;     // sets values back to default
+							food[i] = WolFS3;
+							WolDeath7++;   // adds a body to the kill count >:)
+							
+						}
+						
+					}
+					
+				}
+				
+			}
+			
+		}
+		
+		public int[] WolMove(int placehold[]) {
+			
+			// the wolves must move.
+			
+			int moveChan = 0; // for randomizing where the wolves will go
+			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				if(placehold[i] == 1) { // making sure there's a wolf to move
+					
+					moveChan = r.nextInt(4-1+1)+0;
+					
+                    if(moveChan == 1) { // move left
+						
+						placehold[i] = 0;
+						placehold[i - 1] = 1;
+						
+					}else if(moveChan == 2) { // move up
+						
+						placehold[i] = 0;
+						placehold[i - 10] = 1;
+						
+					}else if(moveChan == 3) { // move down
+						
+						placehold[i] = 0;
+						placehold[i + 10] = 1;
+						
+					}else { // move right
+						
+						placehold[i] = 0;
+						placehold[i + 1] = 1;
+						
+					}
+				}
+			}
+			
+			return placehold;
+			
+		}
+		
+		public int[] RabRepro(int[] placehold, int[] placehold2) {
+			
+			// everytime a new day is pressed wolves have a chance to reproduce if: 
+			// there are two wolves adjacent to eachother, they have eaten atleast half the max food
+			//  and they are atleast half the max age
+			
+			int wahooChan = 0; // for storing repro data during check
+			
+			for(int i = 0; i < 100; i++) {
+				
+				
+				
+			}
+			
 		}
 		
 	}
@@ -499,6 +699,8 @@ public class Simulation {
 			return(b);
 		}
 		
+		
+		
 		public void RabEat(int placehold[], int placehold2[]) {
 			
 			// everytime new day is pressed each rabbit needs to attempt to eat (random?)
@@ -516,6 +718,18 @@ public class Simulation {
 							food[i] = food[i] + 2;
 							
 							FooMiss[i] = 0; // marking down that it has ate, don't want them starving while eating
+							
+						}else {
+							
+							FooMiss[i]++;
+							
+							if(FooMiss[i] == 3) {
+								
+								age[i] = 0;     // sets values back to default
+								food[i] = RabFS3;
+								RabDeath7++;   // adds a body to the kill count >:)
+								
+							}
 							
 						}
 						
