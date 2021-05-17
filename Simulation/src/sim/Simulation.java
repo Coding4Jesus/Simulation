@@ -18,19 +18,20 @@ public class Simulation {
 
 	Random r = new Random();
 
-
+		
 	private JFrame frame;
 	private JPanel panel;
 	private JButton[] grid;
 	private JButton start, nextDay;
+<<<<<<< HEAD
 	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, date, space;
 	private String Grass, Rabbit, Wolf, Day;
+=======
+	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, space;
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 	private JTextField w1, w2, w3, w4, w5, w6, r1, r2, r3, r4, r5, r6;
 	
 	public Simulation() {
-		Grass = "G";
-		Rabbit = "R";
-		Wolf = "W";
 		
 		Wolves wolves = new Wolves();
 		Rabbits rabbits = new Rabbits();
@@ -269,6 +270,12 @@ public class Simulation {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
+				for(int i = 0; i<grid.length; i++) {
+					grassNum[i] = 1;
+					wolfNum[i] = 0;
+					rabbitNum[i] = 0;
+				}
+				
 				int Space;		//For storing the random int for the space an animal is placed
 				
 				int day = Integer.parseInt(Day);	//day counter is set to 0 when parameters are placed
@@ -359,32 +366,40 @@ public class Simulation {
 				for(int i = 0; i<grid.length; i++) {		//Sets all buttons to g for grass
 					grid[i].setText("g");			
 					grassNum[i] = 1;				//Stores a 1 for each grass spot
-					
-					}
-				
+				}
+
 				for(int i = 0; i<wolves.WolSend1(); i++) {		//Randomly places W for each wolf
 					Space = r.nextInt(99-0+1)+0;
 					if(grid[Space].getText().equals("W")) {		
 						i = i-1;
 					}else {
 						grid[Space].setText("W");
+						wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
+						grid[Space].setText("W");
+						wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 					}	
-					wolfNum[Space] = 1;			//Sets a 1 in the place where a wolf is
 				}
+					
+
 				
-				for(int o = 0; o<rabbits.RabSend1(); o++) {		//Randomly places R for each rabbit
+				for(int i = 0; i<rabbits.RabSend1(); i++) {		//Randomly places R for each rabbit
 					Space = r.nextInt(99-0+1)+0;
+					
 					if(grid[Space].getText().equals("W") || grid[Space].getText().equals("R")) {
-						o = o-1;
+						i = i-1;
 					}else {
 						grid[Space].setText("R");
+						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
+						grid[Space].setText("R");
+						rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
 					}
-					rabbitNum[Space] = 1;		//Sets a 1 in the place where a rabbit is
-								
 				}
-			}
-		});
+		
+			}	
 			
+		});
+		
+		
 		c.gridx = 3;
 		c.gridy = 0;
 		panel.add(start, c);
@@ -395,6 +410,7 @@ public class Simulation {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
+<<<<<<< HEAD
 				
 				int day = Integer.parseInt(Day);
 				
@@ -412,6 +428,21 @@ public class Simulation {
 						}
 					}
 				}
+=======
+
+				
+				int[] grassNum2 = rabbits.RabEat(rabbitNum, grassNum);
+				
+				for(int i = 0; i<grid.length; i++) {
+					
+					if (grid[i].equals("g")) {
+						if (grassNum2[i] == 0) {
+							grid[i].setText(" ");
+							}
+					}
+						
+				}
+>>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 				rabbits.RabAge();
 				rabbits.RabMove(rabbitNum,wolfNum);
 				rabbits.RabEat(rabbitNum,grassNum);
@@ -428,8 +459,8 @@ public class Simulation {
 		
 		frame.setVisible(true);
 		
+	
 	}
-
 
 	public static void main(String[] args) {
 
@@ -596,7 +627,7 @@ public class Simulation {
 			return(b);
 		}
 		
-		public void RabEat(int placehold[], int placehold2[]) {
+		public int[] RabEat(int placehold[], int placehold2[]) {
 			
 			// everytime new day is pressed each rabbit needs to attempt to eat (random?)
 			
@@ -607,6 +638,10 @@ public class Simulation {
 				if(placehold[i] == 1) { // RABBIT PLACEHOLD CHECK
 					
 					if(placehold2[i] == 1) { // GRASS PLACEHOLD CHECK
+						
+						placehold2[i] = 0;
+						
+						
 						
 						if(food[i] + 2 < RabFM4) {  // check to see if eating will put them over the limit
 							
@@ -634,6 +669,8 @@ public class Simulation {
 				
 			}
 			
+			return placehold2;
+			
 		}
 		
 		public int[] RabMove(int placehold[], int placehold2[]) {
@@ -642,149 +679,247 @@ public class Simulation {
 			// which direction they go is random but with higher chances to go away from wolves.
 			
 			int moveChan = 0; // for randomizing where the rabbits will go
+			int RLCheck = 0; // checks if they are on the left or right edge
 			
 			for(int i = 0; i < 100; i++) {
 				
+				RLCheck = i % 10;
 				
 				if(placehold[i] == 1) { // making sure there's a rabbit to move
 					
-					if(placehold2[i] + 1 == 1|| placehold2[i] + 2 == 1) { // checking if theres a wolf to the right
+					if (placehold2[i+1] == 1 || RLCheck == 9 && placehold2[i-1] == 1 || RLCheck == 0 && placehold2[i+10] == 1 || i > 89 && placehold2[i-10] == 1 || i < 10) {
 						
-						moveChan = r.nextInt(7-1+1)+0;
+					}else {
+					
+						if(placehold2[i+1] == 1|| placehold2[i+2] == 1) { // checking if theres a wolf to the right
 						
-						if(moveChan == 1 || moveChan == 2) { // move left
+							for(int o = 0; o<1; o++) {  //for looping again if it needs to
 							
-							placehold[i] = 0;
-							placehold[i - 1] = 1;
+								moveChan = r.nextInt(7-1+1)+0;
 							
-						}else if(moveChan == 3|| moveChan == 4) { // move up
+								if(moveChan == 1 || moveChan == 2) { // move left
+										
+									if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+										
+								}else if(moveChan == 3|| moveChan == 4) { // move up
+										
+									if (i < 10 ) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+										
+								}else if(moveChan == 5|| moveChan == 6) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+										
+								}else { // move right
+										
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+								}
+								
+							}
+						
 							
-							placehold[i] = 0;
-							placehold[i - 10] = 1;
+						}else if(placehold2[i-1] == 1|| placehold2[i-2] == 1) { // checking if theres a wolf to the left
 							
-						}else if(moveChan == 5|| moveChan == 6) { // move down
+							for(int o = 0; o<1; o++) {
+								
+								moveChan = r.nextInt(7-1+1)+0;
+								
+		                        if(moveChan == 1 || moveChan == 2) { // move right
+									
+		                        	if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+		                        	
+								}else if(moveChan == 3|| moveChan == 4) { // move up
+									
+									if (i < 10) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+									
+								}else if(moveChan == 5|| moveChan == 6) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+									
+								}else { // move left
+									
+									if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+								}
+							}
 							
-							placehold[i] = 0;
-							placehold[i + 10] = 1;
+						}else if(placehold2[i+10] == 1|| placehold2[i+20] == 1) { // checking if theres a wolf below
 							
-						}else { // move right
+							for(int o = 0; o<1; o++) {
+								
+								moveChan = r.nextInt(7-1+1)+0;
+								
+		                        if(moveChan == 1 || moveChan == 2) { // move left
+									
+		                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+									
+								}else if(moveChan == 3|| moveChan == 4) { // move right
+									
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+									
+								}else if(moveChan == 5|| moveChan == 6) { // move up
+									
+									if (RLCheck == 0) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+									
+								}else { // move down
+									
+									if (RLCheck == 0) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}	
+								}
+							}
 							
-							placehold[i] = 0;
-							placehold[i + 1] = 1;
+						}else if(placehold2[i-10] == 1|| placehold2[i-20] == 1) { // checking if theres a wolf above
 							
+							for(int o = 0; o<1; o++) {
+								
+								moveChan = r.nextInt(7-1+1)+0;
+								
+		                        if(moveChan == 1 || moveChan == 2) { // move left
+									
+		                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+									
+								}else if(moveChan == 3|| moveChan == 4) { // move right
+									
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+									
+								}else if(moveChan == 5|| moveChan == 6) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+									
+								}else { // move up
+									
+									if (i < 10) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+									placehold[i] = 0;
+									placehold[i - 10] = 1;
+									}
+								}
+							}
+							
+						}else { // if theres no wolf
+							
+							for(int o = 0; o<1; o++) {
+							
+								moveChan = r.nextInt(4-1+1)+0;
+								
+		                        if(moveChan == 1) { // move left
+									
+		                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+									
+								}else if(moveChan == 2) { // move up
+									
+									if (i < 10) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+									
+								}else if(moveChan == 3) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+									
+								}else { // move right
+									
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+									
+								}
+							}
 						}
-						
-						
-					}else if(placehold2[i] - 1 == 1|| placehold2[i] - 2 == 1) { // checking if theres a wolf to the left
-						
-						moveChan = r.nextInt(7-1+1)+0;
-						
-                        if(moveChan == 1 || moveChan == 2) { // move right
-							
-							placehold[i] = 0;
-							placehold[i + 1] = 1;
-							
-						}else if(moveChan == 3|| moveChan == 4) { // move up
-							
-							placehold[i] = 0;
-							placehold[i - 10] = 1;
-							
-						}else if(moveChan == 5|| moveChan == 6) { // move down
-							
-							placehold[i] = 0;
-							placehold[i + 10] = 1;
-							
-						}else { // move left
-							
-							placehold[i] = 0;
-							placehold[i - 1] = 1;
-							
-						}
-						
-					}else if(placehold2[i] + 10 == 1|| placehold2[i] + 20 == 1) { // checking if theres a wolf below
-						
-						moveChan = r.nextInt(7-1+1)+0;
-						
-                        if(moveChan == 1 || moveChan == 2) { // move left
-							
-							placehold[i] = 0;
-							placehold[i - 1] = 1;
-							
-						}else if(moveChan == 3|| moveChan == 4) { // move right
-							
-							placehold[i] = 0;
-							placehold[i + 1] = 1;
-							
-						}else if(moveChan == 5|| moveChan == 6) { // move up
-							
-							placehold[i] = 0;
-							placehold[i - 10] = 1;
-							
-						}else { // move down
-							
-							placehold[i] = 0;
-							placehold[i + 10] = 1;
-							
-						}
-						
-					}else if(placehold2[i] - 10 == 1|| placehold2[i] - 20 == 1) { // checking if theres a wolf above
-						
-						moveChan = r.nextInt(7-1+1)+0;
-						
-                        if(moveChan == 1 || moveChan == 2) { // move left
-							
-							placehold[i] = 0;
-							placehold[i - 1] = 1;
-							
-						}else if(moveChan == 3|| moveChan == 4) { // move right
-							
-							placehold[i] = 0;
-							placehold[i + 1] = 1;
-							
-						}else if(moveChan == 5|| moveChan == 6) { // move down
-							
-							placehold[i] = 0;
-							placehold[i + 10] = 1;
-							
-						}else { // move up
-							
-							placehold[i] = 0;
-							placehold[i - 10] = 1;
-							
-						}
-						
-					}else { // if theres no wolf
-						
-						moveChan = r.nextInt(4-1+1)+0;
-						
-                        if(moveChan == 1) { // move left
-							
-							placehold[i] = 0;
-							placehold[i - 1] = 1;
-							
-						}else if(moveChan == 2) { // move up
-							
-							placehold[i] = 0;
-							placehold[i - 10] = 1;
-							
-						}else if(moveChan == 3) { // move down
-							
-							placehold[i] = 0;
-							placehold[i + 10] = 1;
-							
-						}else { // move right
-							
-							placehold[i] = 0;
-							placehold[i + 1] = 1;
-							
-						}
-						
 					}
 					
 				}
 				
-				
-			}
+			}	
+			
 			
 			return placehold;
 			
@@ -1295,7 +1430,12 @@ public class Simulation {
 			return placehold;
 			
 		}
-		
-	}
 	
+	}
+
 }
+		
+	
+	
+
+
