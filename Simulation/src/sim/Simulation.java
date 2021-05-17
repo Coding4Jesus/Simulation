@@ -877,7 +877,247 @@ public class Simulation {
 			int moveChan = 0; // for randomizing where the rabbits will go
 			int RLCheck = 0; // checks if they are on the left or right edge
 			
-			
+
+			for(int i = 0; i < 100; i++) {
+				
+				RLCheck = i % 10;
+				
+				if(placehold[i] == 1) { // making sure there's a rabbit to move
+					
+					if (placehold2[i+1] == 1 || RLCheck == 9 && placehold2[i-1] == 1 || RLCheck == 0 && placehold2[i+10] == 1 || i > 89 && placehold2[i-10] == 1 || i < 10) {
+						
+					}else {
+					
+						if(placehold2[i+1] == 1|| placehold2[i+2] == 1) { // checking if theres a wolf to the right
+						
+							for(int o = 0; o<1; o++) {  //for looping again if it needs to
+							
+								moveChan = r.nextInt(7-1+1)+0;
+							
+								if(moveChan == 1 || moveChan == 2) { // move left
+										
+									if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+										
+								}else if(moveChan == 3|| moveChan == 4) { // move up
+										
+									if (i < 10 ) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+										
+								}else if(moveChan == 5|| moveChan == 6) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+										
+								}else { // move right
+										
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+								}
+								
+							}
+						
+							
+						}else if(placehold2[i-1] == 1|| placehold2[i-2] == 1) { // checking if theres a wolf to the left
+							
+							for(int o = 0; o<1; o++) {
+								
+								moveChan = r.nextInt(7-1+1)+0;
+								
+		                        if(moveChan == 1 || moveChan == 2) { // move right
+									
+		                        	if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+		                        	
+								}else if(moveChan == 3|| moveChan == 4) { // move up
+									
+									if (i < 10) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+									
+								}else if(moveChan == 5|| moveChan == 6) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+									
+								}else { // move left
+									
+									if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+								}
+							}
+							
+						}else if(placehold2[i+10] == 1|| placehold2[i+20] == 1) { // checking if theres a wolf below
+							
+							for(int o = 0; o<1; o++) {
+								
+								moveChan = r.nextInt(7-1+1)+0;
+								
+		                        if(moveChan == 1 || moveChan == 2) { // move left
+									
+		                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+									
+								}else if(moveChan == 3|| moveChan == 4) { // move right
+									
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+									
+								}else if(moveChan == 5|| moveChan == 6) { // move up
+									
+									if (RLCheck == 0) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+									
+								}else { // move down
+									
+									if (RLCheck == 0) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}	
+								}
+							}
+							
+						}else if(placehold2[i-10] == 1|| placehold2[i-20] == 1) { // checking if theres a wolf above
+							
+							for(int o = 0; o<1; o++) {
+								
+								moveChan = r.nextInt(7-1+1)+0;
+								
+		                        if(moveChan == 1 || moveChan == 2) { // move left
+									
+		                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+									
+								}else if(moveChan == 3|| moveChan == 4) { // move right
+									
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+									
+								}else if(moveChan == 5|| moveChan == 6) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+									
+								}else { // move up
+									
+									if (i < 10) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+									placehold[i] = 0;
+									placehold[i - 10] = 1;
+									}
+								}
+							}
+							
+						}else { // if theres no wolf
+							
+							for(int o = 0; o<1; o++) {
+							
+								moveChan = r.nextInt(4-1+1)+0;
+								
+		                        if(moveChan == 1) { // move left
+									
+		                        	if (RLCheck == 0) {  //Checks if its on the left edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 1] = 1;
+									}
+									
+								}else if(moveChan == 2) { // move up
+									
+									if (i < 10) {  //Checks if its on the top edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i - 10] = 1;
+									}
+									
+								}else if(moveChan == 3) { // move down
+									
+									if (i > 89) {  //Checks if its on the bottom edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 10] = 1;
+									}
+									
+								}else { // move right
+									
+									if (RLCheck == 9) {  //Checks if its on the right edge, if so try again
+										o = o - 1;
+									}else {
+										placehold[i] = 0;
+										placehold[i + 1] = 1;
+									}
+									
+								}
+							}
+						}
+					}
+					
+				}
+				 
+			}	//If-ception
+
+			return placehold;
 			
 		}
 		public void RabAge() {
