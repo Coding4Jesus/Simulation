@@ -796,7 +796,121 @@ public class Simulation {
 			
 			for(int i = 0; i < 100; i++) {
 				
+				wahooChan = r.nextInt(100-1+1)+0;
 				
+				if(placehold[i + 1]  == 1) { // check if theres another wolf to the right
+					
+					if(Wfood[i] > WolFM4 / 2 && Wfood[i + 1]  > WolFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+						
+						if(placehold[i + 3]  == 0 && wahooChan <= WolChance6) { // make sure theres nothing already there to stop new wolf from spawning
+							
+							placehold[i + 3] = 1; // place new wolf
+							Wage[i + 3] = 1; // make the new wolf actually show up
+							
+						}else if(placehold[i - 1]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i - 1] = 1; // place new wolf
+							Wage[i - 1] = 1; // make the new wolf actually show up
+							
+						}else if(placehold[i - 10]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i - 10] = 1; // place new wolf
+							Wage[i - 10] = 1; // make the new rabbit actually show up
+							
+						}else if(placehold[i + 10]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i + 10] = 1; // place new wolf
+							Wage[i + 10] = 1; // make the new wolf actually show up
+							
+						}
+						
+					}
+					
+				}else if(placehold[i - 1]  == 1) { // check if theres another wolf to the left
+					
+					if(Wfood[i] > WolFM4 / 2 && Wfood[i - 1]  > WolFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+						
+						if(placehold[i - 3]  == 0 && wahooChan <= WolChance6) { // make sure theres nothing already there to stop new wolf from spawning
+							
+							placehold[i - 3] = 1; // place new Wolf
+							Wage[i - 3] = 1; // make the new Wolf actually show up
+							
+						}else if(placehold[i + 1]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i + 1] = 1; // place new Wolf
+							Wage[i + 1] = 1; // make the new Wolf actually show up
+							
+						}else if(placehold[i - 10]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i - 10] = 1; // place new Wolf
+							Wage[i - 10] = 1; // make the new Wolf actually show up
+							
+						}else if(placehold[i + 10]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i + 10] = 1; // place new Wolf
+							Wage[i + 10] = 1; // make the new Wolf actually show up
+							
+						}
+						
+					}
+					
+				}else if(placehold[i + 10]  == 1) { // check if theres another wolf above
+					
+					if(Wfood[i] > WolFM4 / 2 && Wfood[i + 10]  > WolFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+						
+						if(placehold[i - 1]  == 0 && wahooChan <= WolChance6) { // make sure theres nothing already there to stop new Wolf from spawning
+							
+							placehold[i - 1] = 1; // place new Wolf
+							Wage[i - 1] = 1; // make the new Wolf actually show up
+							
+						}else if(placehold[i + 1]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i + 1] = 1; // place new Wolf
+							Wage[i + 1] = 1; // make the new Wolf actually show up
+							
+						}else if(placehold[i + 10]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i + 10] = 1; // place new Wolf
+							Wage[i + 10] = 1; // make the new Wolf actually show up
+							
+						}else if(placehold[i - 20]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i - 20] = 1; // place new Wolf
+							Wage[i - 20] = 1; // make the new Wolf actually show up
+							
+						}
+						
+					}
+					
+				}else if(placehold[i - 10]  == 1) { // check if theres another wolf below
+					
+					if(Wfood[i] > WolFM4 / 2 && Wfood[i - 10]  > WolFM4 / 2) { // make sure they have eaten atleast half the maximum amount
+						
+						if(placehold[i - 1]  == 0 && wahooChan <= WolChance6) { // make sure theres nothing already there to stop new Wolf from spawning
+							
+							placehold[i - 1] = 1; // place new Wolf
+							Wage[i - 1] = 1; // make the new Wolf actually show up
+							
+						}else if(placehold[i + 1]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i + 1] = 1; // place new wolf
+							Wage[i + 1] = 1; // make the new wolf actually show up
+							
+						}else if(placehold[i - 10]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i - 10] = 1; // place new wolf
+							Wage[i - 10] = 1; // make the new wolf actually show up
+							
+						}else if(placehold[i + 20]  == 0 && wahooChan <= WolChance6) {
+							
+							placehold[i + 20] = 1; // place new wolf
+							Wage[i + 20] = 1; // make the new wolf actually show up
+							
+						}
+						
+					}
+					
+				}
 				
 			}
 			return placehold;
@@ -817,7 +931,7 @@ public class Simulation {
 			RabFS3 = 15; //initial amount of food
 			RabFM4 = 40; //maximum amount of food
 			RabOld5 = 25; //maximum age
-			RabChance6 = 50; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
+			RabChance6 = 80; //chance to reproduce if in proper enviroment (check the website reference to see proper enviroment)
 			RabDeath7 = 0; //I'm gonna be using this for counting the amount of rabbits that have died, could display it maybe?
 			
 			
@@ -1226,28 +1340,30 @@ public class Simulation {
 			
 			for(int i = 0; i < 100; i++) {
 				
+				wahooChan = r.nextInt(100-1+1)+0;
+				
 				if(placehold[i + 1]  == 1) { // check if theres another rabbit to the right
 					
-					if(placehold2[i + 2] == 1 || placehold2[i] + 3 == 1) { // check if theres a wolf to the right
+					if(placehold2[i + 2] == 1 || placehold2[i + 3]  == 1) { // check if theres a wolf to the right
 						
 						if(food[i] > RabFM4 / 2 && food[i + 1]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i + 3]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i + 3]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i + 3] = 1; // place new rabbit
 								age[i + 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 1]  == 0) {
+							}else if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1260,22 +1376,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i + 1]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i + 3]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i + 3]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i + 3] = 1; // place new rabbit
 								age[i + 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 1]  == 0) {
+							}else if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1288,22 +1404,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i + 1]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i + 3]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i + 3]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i + 3] = 1; // place new rabbit
 								age[i + 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 1]  == 0) {
+							}else if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10] + 10 == 0) {
+							}else if(placehold[i + 10] + 10 == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1316,22 +1432,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i + 1]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i + 3]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i + 3]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i + 3] = 1; // place new rabbit
 								age[i + 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 1]  == 0) {
+							}else if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1348,22 +1464,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i - 1]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 3]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 3]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 3] = 1; // place new rabbit
 								age[i - 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1376,22 +1492,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i - 1]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 3]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 3]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 3] = 1; // place new rabbit
 								age[i - 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1409,17 +1525,17 @@ public class Simulation {
 								placehold[i - 3] = 1; // place new rabbit
 								age[i - 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1432,22 +1548,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i - 1]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 3]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 3]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 3] = 1; // place new rabbit
 								age[i - 3] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
@@ -1464,22 +1580,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i + 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 20]  == 0) {
+							}else if(placehold[i - 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 20] = 1; // place new rabbit
 								age[i - 20] = 1; // make the new rabbit actually show up
@@ -1492,22 +1608,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i + 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 20]  == 0) {
+							}else if(placehold[i - 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 20] = 1; // place new rabbit
 								age[i - 20] = 1; // make the new rabbit actually show up
@@ -1520,22 +1636,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i + 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 20]  == 0) {
+							}else if(placehold[i - 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 20] = 1; // place new rabbit
 								age[i - 20] = 1; // make the new rabbit actually show up
@@ -1548,22 +1664,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i + 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 10]  == 0) {
+							}else if(placehold[i + 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 10] = 1; // place new rabbit
 								age[i + 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 20]  == 0) {
+							}else if(placehold[i - 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 20] = 1; // place new rabbit
 								age[i - 20] = 1; // make the new rabbit actually show up
@@ -1580,22 +1696,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i - 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 20]  == 0) {
+							}else if(placehold[i + 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 20] = 1; // place new rabbit
 								age[i + 20] = 1; // make the new rabbit actually show up
@@ -1608,22 +1724,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i - 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 20]  == 0) {
+							}else if(placehold[i + 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 20] = 1; // place new rabbit
 								age[i + 20] = 1; // make the new rabbit actually show up
@@ -1636,22 +1752,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i - 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 20]  == 0) {
+							}else if(placehold[i + 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 20] = 1; // place new rabbit
 								age[i + 20] = 1; // make the new rabbit actually show up
@@ -1664,22 +1780,22 @@ public class Simulation {
 						
 						if(food[i] > RabFM4 / 2 && food[i - 10]  > RabFM4 / 2) { // make sure they have eaten atleast half the maximum amount
 							
-							if(placehold[i - 1]  == 0) { // make sure theres nothing already there to stop new rabbit from spawning
+							if(placehold[i - 1]  == 0 && wahooChan <= RabChance6) { // make sure theres nothing already there to stop new rabbit from spawning
 								
 								placehold[i - 1] = 1; // place new rabbit
 								age[i - 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 1]  == 0) {
+							}else if(placehold[i + 1]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 1] = 1; // place new rabbit
 								age[i + 1] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i - 10]  == 0) {
+							}else if(placehold[i - 10]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i - 10] = 1; // place new rabbit
 								age[i - 10] = 1; // make the new rabbit actually show up
 								
-							}else if(placehold[i + 20]  == 0) {
+							}else if(placehold[i + 20]  == 0 && wahooChan <= RabChance6) {
 								
 								placehold[i + 20] = 1; // place new rabbit
 								age[i + 20] = 1; // make the new rabbit actually show up
