@@ -460,6 +460,31 @@ public class Simulation {
 				}
 				rabbits.RabEat(rabbitNum,grassNum);
 				rabbits.RabRepro(rabbitNum, wolfNum);
+				
+				wolves.WolAge();
+				wolves.WolMove(wolfNum);
+				wolves.WolEat(wolfNum, rabbitNum);
+				int wolfNum1[];
+				
+				wolfNum1 = wolves.WolMove(wolfNum);
+				
+				for(int i = 0; i<wolfNum1.length; i++) {
+					wolfNum[i]=wolfNum1[i];
+				}
+				
+				for(int i = 0; i<grid.length; i++) {
+					if(wolfNum[i] == 1) {							//"for loops when it returns the array it would take the rabbit array if this spot in the array equals 1 that spot in the grid equals r"
+						grid[i].setText("W");	  					//goes through the wolf and grass arrays and updates the grid positions
+					}
+					else if(wolfNum[i] == 0 && grassNum[i] == 1){
+						grid[i].setText("g");
+					}
+					else if(wolfNum[i] == 0 && grassNum[i] == 0){
+						grid[i].setText(" ");
+					}
+						
+				}
+				wolves.WolRepro(wolfNum, rabbitNum);
 			}
 			
 		});
@@ -486,7 +511,6 @@ public class Simulation {
 		private int WolNum1, WolMeta2, WolFS3, WolFM4, WolOld5, WolChance6, WolDeath7;		//the 6 variables I think we'll need
 		public int[] Wfood = new int[100], Wage = new int[100], WFooMiss = new int[100];
 		Random r = new Random();
-		private static Object wolvs[];
 		public Wolves() {														//numbered to keep them in mind more easily
 			
 			
@@ -515,11 +539,6 @@ public class Simulation {
 				
 			}
 
-		}
-		public void makeWolves(int n) {
-			for (int i = 0; i < n; ++i) {
-				wolvs[i] = new Wolves();
-			}
 		}
 		public int WolAlter1(int placehold) { 
 			WolNum1 = placehold;				//they all change the initial values
