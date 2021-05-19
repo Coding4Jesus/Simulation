@@ -23,12 +23,8 @@ public class Simulation {
 	private JPanel panel;
 	private JButton[] grid;
 	private JButton start, nextDay;
-<<<<<<< HEAD
 	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, date, space;
 	private String Grass, Rabbit, Wolf, Day;
-=======
-	private JLabel l1, l2, l3, l4, l5, l6, l7, l8, l9, l10 ,l11, l12, wl, rl, space;
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
 	private JTextField w1, w2, w3, w4, w5, w6, r1, r2, r3, r4, r5, r6;
 	
 	public Simulation() {
@@ -410,7 +406,6 @@ public class Simulation {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-<<<<<<< HEAD
 				
 				int day = Integer.parseInt(Day);
 				
@@ -428,8 +423,6 @@ public class Simulation {
 						}
 					}
 				}
-=======
-
 				
 				int[] grassNum2 = rabbits.RabEat(rabbitNum, grassNum);
 				
@@ -442,9 +435,29 @@ public class Simulation {
 					}
 						
 				}
->>>>>>> branch 'main' of https://github.com/Coding4Jesus/Simulation.git
+				
 				rabbits.RabAge();
-				rabbits.RabMove(rabbitNum,wolfNum);
+				
+				int rabbitNum1[];
+				
+				rabbitNum1 = rabbits.RabMove(rabbitNum,wolfNum);
+				
+				for(int i = 0; i<rabbitNum1.length; i++) {
+					rabbitNum[i]=rabbitNum1[i];
+				}
+				
+				for(int i = 0; i<grid.length; i++) {
+					if(rabbitNum[i] == 1) {							//"for loops when it returns the array it would take the rabbit array if this spot in the array equals 1 that spot in the grid equals r"
+						grid[i].setText("R");	  					//goes through the rabbit and grass arrays and updates the grid positions
+					}
+					else if(rabbitNum[i] == 0 && grassNum[i] == 1){
+						grid[i].setText("g");
+					}
+					else if(rabbitNum[i] == 0 && grassNum[i] == 0){
+						grid[i].setText(" ");
+					}
+						
+				}
 				rabbits.RabEat(rabbitNum,grassNum);
 				rabbits.RabRepro(rabbitNum, wolfNum);
 			}
@@ -933,7 +946,7 @@ public class Simulation {
 				
 				if(age[i] != 0) {
 					
-					//put in metabolism into age
+					//incorporate metabolism into age
 					age[i]++;
 					
 					if(age[i]>RabOld5) {
